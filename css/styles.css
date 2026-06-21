@@ -46,12 +46,20 @@ body {
   background-color: var(--color-flame-orange);
 }
 
+.bg-ember-gold {
+  background-color: var(--color-ember-gold);
+}
+
 .bg-flame-orange-20 {
   background-color: rgba(var(--rgb-flame-orange), 0.2);
 }
 
 .hover-bg-flame-orange:hover {
   background-color: var(--color-flame-orange);
+}
+
+.hover-bg-ember-gold:hover {
+  background-color: var(--color-ember-gold);
 }
 
 .hover-bg-flame-orange-10:hover {
@@ -73,6 +81,10 @@ body {
 
 .text-flame-orange-70 {
   color: rgba(var(--rgb-flame-orange), 0.7);
+}
+
+.text-flame-orange {
+  color: var(--color-flame-orange);
 }
 
 .text-ember-gold {
@@ -137,6 +149,10 @@ body {
   box-shadow: 0 0 42px rgba(var(--rgb-flame-orange), 0.28);
 }
 
+.hover-shadow-gold:hover {
+  box-shadow: 0 0 42px rgba(var(--rgb-ember-gold), 0.28);
+}
+
 .focus-ring-ember-offset-charcoal:focus {
   box-shadow:
     0 0 0 2px var(--color-deep-charcoal),
@@ -155,9 +171,24 @@ body {
   box-shadow: 0 0 20px rgba(var(--rgb-flame-orange), 0.12);
 }
 
-/* Hero 主視覺：雞圖專用火焰投影。 */
-.hero-mark {
-  filter: drop-shadow(0 0 28px rgba(var(--rgb-flame-orange), 0.36));
+/* LINE Popup：毛玻璃背景只負責視覺遮罩，關閉動作由右上角 X 控制。 */
+.line-popup-backdrop {
+  background: rgba(var(--rgb-deep-charcoal), 0.58);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.line-popup-panel {
+  background:
+    linear-gradient(160deg, rgba(var(--rgb-flame-orange), 0.1), transparent 42%),
+    rgba(var(--rgb-deep-charcoal), 0.94);
+  border: 1px solid rgba(var(--rgb-flame-orange), 0.48);
+  box-shadow: 0 24px 80px rgba(var(--rgb-deep-charcoal), 0.78);
+}
+
+.line-popup-qr-frame {
+  background: var(--color-lab-white);
+  box-shadow: 0 0 28px rgba(var(--rgb-flame-orange), 0.16);
 }
 
 /* 社群圖示互動：保留舊 SVG/LINE icon 的 hover 動畫支援。 */

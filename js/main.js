@@ -31,3 +31,29 @@ if (menuButton && mobileMenu) {
     }
   });
 }
+
+// LINE Popup 控制：只允許使用者點擊右上角 X 關閉，避免掃碼時誤觸遮罩關掉。
+const linePopupButton = document.querySelector("#linePopupButton");
+const linePopup = document.querySelector("#linePopup");
+const linePopupClose = document.querySelector("#linePopupClose");
+
+if (linePopupButton && linePopup && linePopupClose) {
+  const openLinePopup = () => {
+    linePopup.classList.remove("hidden");
+    linePopup.classList.add("flex");
+    linePopup.setAttribute("aria-hidden", "false");
+    document.body.classList.add("overflow-hidden");
+    linePopupClose.focus();
+  };
+
+  const closeLinePopup = () => {
+    linePopup.classList.add("hidden");
+    linePopup.classList.remove("flex");
+    linePopup.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("overflow-hidden");
+    linePopupButton.focus();
+  };
+
+  linePopupButton.addEventListener("click", openLinePopup);
+  linePopupClose.addEventListener("click", closeLinePopup);
+}

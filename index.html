@@ -85,29 +85,35 @@
                 src="assets/images/logo/logo-wordmark-1-trans.png"
                 alt="火候研究所 Fire Roast Lab"
               />
-            <div class="md:-ml-8 lg:-ml-10">
+            <div class="mx-auto max-w-xl md:mx-0">
               <h1 class="mt-2 text-2xl font-bold text-ember-gold sm:text-3xl md:text-4xl lg:text-4xl">
                 預約制桶烤全雞
               </h1>
-              <p class="mt-3 max-w-xl text-base leading-7 text-lab-white-78 sm:text-lg md:mx-0 md:max-w-xl md:text-xl md:leading-9">
-                我們不賣速食，我們研究的是「如何讓一隻雞烤到讓人想報警」的美味科學。
+              <p class="mt-3 max-w-xl text-base leading-7 text-lab-white sm:text-lg md:mx-0 md:max-w-xl md:text-xl md:leading-9">
+                我們不賣速食，我們研究的是「<span class="text-flame-orange">如何讓一隻雞烤到讓人想報警</span>」的美味科學。
               </p>
             </div>
 
             <div class="mt-5 flex flex-col items-stretch justify-center gap-4 sm:flex-row sm:items-center md:justify-center">
               <a
                 href="#reservation"
-                class="inline-flex min-h-11 items-center justify-center rounded-lg bg-flame-orange px-8 py-3 text-lg font-bold text-lab-white transition hover:-translate-y-0.5 hover-bg-flame-orange hover-shadow-flame focus:outline-none focus-ring-ember-offset-charcoal"
+                class="inline-flex min-h-11 w-full items-center justify-center rounded-lg bg-flame-orange px-8 py-3 text-lg font-bold text-lab-white transition hover:-translate-y-0.5 hover-bg-flame-orange hover-shadow-flame focus:outline-none focus-ring-ember-offset-charcoal sm:w-64"
               >
                 立即預約
               </a>
+              <button
+                id="linePopupButton"
+                class="inline-flex min-h-11 w-full items-center justify-center rounded-lg bg-ember-gold px-8 py-3 text-lg font-bold text-lab-white transition hover:-translate-y-0.5 hover-bg-ember-gold hover-shadow-gold focus:outline-none focus-ring-ember-offset-charcoal sm:w-64"
+                type="button"
+              >
+                加入 LINE 官方帳號
+              </button>
             </div>
           </div>
 
           <div class="pointer-events-none relative z-0 mx-auto -mb-3 flex w-full max-w-[660px] items-center justify-center md:-mb-12 md:max-w-none md:justify-end lg:-mb-16 xl:-mb-20">
-            <div class="absolute right-0 h-[82%] w-[88%] rounded-full bg-flame-orange-20 blur-3xl" aria-hidden="true"></div>
             <img
-              class="hero-mark relative z-0 w-full max-w-[360px] object-contain sm:max-w-[640px] md:max-w-[840px] lg:max-w-[980px] xl:max-w-[1080px]"
+              class="relative z-0 w-full max-w-[360px] object-contain sm:max-w-[640px] md:max-w-[840px] lg:max-w-[980px] xl:max-w-[1080px]"
               src="assets/images/hero/hero-chicken-nobg.png"
               alt="火候研究所烈焰雞主視覺"
             />
@@ -234,11 +240,41 @@
           <article class="surface-glow ember-border rounded-lg p-5 text-center transition hover-border-ember-gold hover-shadow-ember">
             <img class="mx-auto h-14 w-14 object-contain" src="assets/images/icons/icon-steam.png" alt="" />
             <h3 class="mt-4 font-bold text-lab-white">多種搭配</h3>
-            <p class="mt-2 text-sm leading-6 text-tech-gray">主餐、時蔬與雞汁風味相襯。</p>
+            <p class="mt-2 text-sm leading-6 text-tech-gray">桶烤全雞、時蔬與雞汁風味相襯。</p>
           </article>
         </div>
       </section>
     </main>
+
+    <!-- LINE Popup：顯示官方帳號 QR Code；背景毛玻璃不可點擊關閉，只能按右上角 X。 -->
+    <div
+      id="linePopup"
+      class="line-popup-backdrop fixed inset-0 z-[60] hidden items-center justify-center p-5"
+      role="dialog"
+      aria-modal="true"
+      aria-hidden="true"
+      aria-labelledby="linePopupTitle"
+    >
+      <div class="line-popup-panel relative w-full max-w-sm rounded-lg p-6 text-center">
+        <button
+          id="linePopupClose"
+          class="absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-ember-gold text-lab-white transition hover:-translate-y-0.5 hover-bg-ember-gold hover-shadow-gold focus:outline-none focus-ring-ember-offset-charcoal"
+          type="button"
+          aria-label="關閉 LINE QR Code 視窗"
+        >
+          X
+        </button>
+        <h2 id="linePopupTitle" class="sr-only">LINE 官方帳號 QR Code</h2>
+        <div class="line-popup-qr-frame mx-auto mt-9 w-full max-w-[260px] rounded-lg p-4">
+          <img
+            class="h-auto w-full object-contain"
+            src="assets/images/qrcode/line-qrcode.png"
+            alt="火候研究所 LINE 官方帳號 QR Code"
+          />
+        </div>
+        <p class="mt-5 text-center text-lg font-bold text-ember-gold">LINE ID：@344eyjcd</p>
+      </div>
+    </div>
 
     <!-- Footer：聯絡資訊區，包含 Footer Logo、地址時間與社群連結。 -->
     <footer id="contact" class="border-t border-flame-orange-35 bg-deep-charcoal">
@@ -253,39 +289,36 @@
         </div>
 
         <!-- Footer Info：地址、Google Map 入口、預約取餐時間與 LINE ID。 -->
-        <address class="min-w-0 justify-self-center text-center text-sm not-italic leading-7 text-tech-gray sm:text-base md:text-left">
+        <address class="min-w-0 justify-self-center text-center text-sm not-italic leading-7 text-ember-gold sm:text-base md:text-left">
           <p class="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 md:justify-start">
-            <span>地址：桃園市桃園區民生路547號</span>
-            <span class="whitespace-nowrap">(民生路與北埔路口)</span>
-            <a
-              class="inline-flex h-8 w-8 items-center justify-center transition hover:-translate-y-0.5"
-              href="#"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Google Map 連結"
-            >
-              <img class="h-7 w-7 object-contain" src="assets/images/icons/google-map.png" alt="" />
-            </a>
+            <span>取餐地址：</span>
+            <p class="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 md:justify-start">
+              <span class="whitespace-nowrap">桃園市桃園區民生路547號</span>
+              <span class="whitespace-nowrap">(民生路與北埔路口)</span>
+              <a class="inline-flex h-8 w-8 items-center justify-center transition hover:-translate-y-0.5" href="#" target="_blank"
+                rel="noreferrer" aria-label="Google Map 連結">
+                <img class="h-7 w-7 object-contain" src="assets/images/icons/google-map.png" alt="" />
+              </a>
+            </p>
           </p>
           <p class="mt-2">預約取餐時間：</p>
           <p class="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 md:justify-start">
             <span class="whitespace-nowrap">每週三 18:00 至 21:00</span>
-            <span class="hidden text-flame-orange-70 sm:inline">|</span>
+            <span class="hidden sm:inline">|</span>
             <span class="whitespace-nowrap">每週六 12:30 至 21:00</span>
+            <span class="whitespace-nowrap">(如有異動請詳見公告)</span>
           </p>
-          <p class="mt-1">(如有異動請詳見公告)</p>
-          <p class="mt-1">LINE 官方帳號 ID： @344eyjcd</p>
         </address>
 
         <!-- Footer Social：社群圖示連結，右欄集中管理外部社群入口。 -->
         <div class="flex items-center justify-center gap-6 md:justify-end" aria-label="Footer 社群連結">
-          <a class="social-icon inline-flex h-14 w-14 items-center justify-center transition hover:-translate-y-0.5" href="https://www.facebook.com/profile.php?id=61590578969208" aria-label="Facebook">
+          <a class="social-icon inline-flex h-14 w-14 items-center justify-center transition hover:-translate-y-0.5" href="https://www.facebook.com/profile.php?id=61590578969208" target="_blank" rel="noreferrer" aria-label="Facebook">
             <img class="h-10 w-10 object-contain" src="assets/images/icons/facebook.png" alt="" />
           </a>
-          <a class="social-icon inline-flex h-14 w-14 items-center justify-center transition hover:-translate-y-0.5" href="#" aria-label="Instagram">
+          <a class="social-icon inline-flex h-14 w-14 items-center justify-center transition hover:-translate-y-0.5" href="#" target="_blank" rel="noreferrer" aria-label="Instagram">
             <img class="h-10 w-10 object-contain" src="assets/images/icons/instagram.png" alt="" />
           </a>
-          <a class="social-icon inline-flex h-14 w-14 items-center justify-center transition hover:-translate-y-0.5" href="https://lin.ee/nHBwk6r" aria-label="LINE">
+          <a class="social-icon inline-flex h-14 w-14 items-center justify-center transition hover:-translate-y-0.5" href="https://lin.ee/nHBwk6r" target="_blank" rel="noreferrer" aria-label="LINE">
             <img class="h-10 w-10 object-contain" src="assets/images/icons/line.png" alt="" />
           </a>
         </div>

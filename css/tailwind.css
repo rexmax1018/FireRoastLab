@@ -570,6 +570,10 @@ video {
   pointer-events: none;
 }
 
+.fixed {
+  position: fixed;
+}
+
 .absolute {
   position: absolute;
 }
@@ -582,12 +586,20 @@ video {
   position: sticky;
 }
 
-.right-0 {
-  right: 0px;
+.inset-0 {
+  inset: 0px;
+}
+
+.right-4 {
+  right: 1rem;
 }
 
 .top-0 {
   top: 0px;
+}
+
+.top-4 {
+  top: 1rem;
 }
 
 .z-0 {
@@ -600,6 +612,10 @@ video {
 
 .z-50 {
   z-index: 50;
+}
+
+.z-\[60\] {
+  z-index: 60;
 }
 
 .mx-auto {
@@ -623,10 +639,6 @@ video {
   margin-bottom: 2.25rem;
 }
 
-.mt-1 {
-  margin-top: 0.25rem;
-}
-
 .mt-2 {
   margin-top: 0.5rem;
 }
@@ -641,6 +653,10 @@ video {
 
 .mt-5 {
   margin-top: 1.25rem;
+}
+
+.mt-9 {
+  margin-top: 2.25rem;
 }
 
 .flex {
@@ -695,8 +711,8 @@ video {
   height: 2rem;
 }
 
-.h-\[82\%\] {
-  height: 82%;
+.h-auto {
+  height: auto;
 }
 
 .h-full {
@@ -747,10 +763,6 @@ video {
   width: 2rem;
 }
 
-.w-\[88\%\] {
-  width: 88%;
-}
-
 .w-auto {
   width: auto;
 }
@@ -788,6 +800,10 @@ video {
   max-width: 240px;
 }
 
+.max-w-\[260px\] {
+  max-width: 260px;
+}
+
 .max-w-\[320px\] {
   max-width: 320px;
 }
@@ -798,6 +814,10 @@ video {
 
 .max-w-\[660px\] {
   max-width: 660px;
+}
+
+.max-w-sm {
+  max-width: 24rem;
 }
 
 .max-w-xl {
@@ -884,10 +904,6 @@ video {
 
 .whitespace-nowrap {
   white-space: nowrap;
-}
-
-.rounded-full {
-  border-radius: 9999px;
 }
 
 .rounded-lg {
@@ -1048,11 +1064,6 @@ video {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.blur-3xl {
-  --tw-blur: blur(64px);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-
 .backdrop-blur-xl {
   --tw-backdrop-blur: blur(24px);
   -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
@@ -1127,6 +1138,10 @@ video {
     height: 3.5rem;
   }
 
+  .sm\:w-64 {
+    width: 16rem;
+  }
+
   .sm\:max-w-\[260px\] {
     max-width: 260px;
   }
@@ -1198,10 +1213,6 @@ video {
 
   .md\:-mb-12 {
     margin-bottom: -3rem;
-  }
-
-  .md\:-ml-8 {
-    margin-left: -2rem;
   }
 
   .md\:-mr-16 {
@@ -1312,10 +1323,6 @@ video {
 @media (min-width: 1024px) {
   .lg\:-mb-16 {
     margin-bottom: -4rem;
-  }
-
-  .lg\:-ml-10 {
-    margin-left: -2.5rem;
   }
 
   .lg\:-mr-24 {
