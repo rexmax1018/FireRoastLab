@@ -1,3 +1,4 @@
+/* 品牌色票：所有頁面色彩由這裡集中管理，方便日後調整品牌視覺。 */
 :root {
   --color-deep-charcoal: #0D0D0D;
   --color-flame-orange: #FF3F00;
@@ -12,6 +13,7 @@
   --rgb-tech-gray: 138, 138, 138;
 }
 
+/* 全站基礎設定：平滑捲動、背景色與系統中文字體堆疊。 */
 html {
   scroll-behavior: smooth;
 }
@@ -27,6 +29,7 @@ body {
     sans-serif;
 }
 
+/* 背景色工具 class：用語意命名替代 HTML 內直接寫色碼。 */
 .bg-deep-charcoal {
   background-color: var(--color-deep-charcoal);
 }
@@ -55,6 +58,7 @@ body {
   background-color: rgba(var(--rgb-flame-orange), 0.1);
 }
 
+/* 文字色工具 class：統一處理純色與透明度變化。 */
 .text-lab-white {
   color: var(--color-lab-white);
 }
@@ -83,6 +87,7 @@ body {
   color: var(--color-ember-gold);
 }
 
+/* 邊框色工具 class：對應 Header、卡片、Footer 等分隔線透明度。 */
 .border-flame-orange-25 {
   border-color: rgba(var(--rgb-flame-orange), 0.25);
 }
@@ -115,6 +120,7 @@ body {
   background-color: var(--color-flame-orange);
 }
 
+/* 陰影與焦點效果：集中管理火焰光暈、Header 陰影與鍵盤焦點樣式。 */
 .site-header-shadow {
   box-shadow: 0 10px 30px rgba(var(--rgb-deep-charcoal), 0.38);
 }
@@ -141,6 +147,7 @@ body {
   border: 1px solid rgba(var(--rgb-flame-orange), 0.45);
 }
 
+/* 共用卡片表面：用於餐點與特色卡片的半透明火光質感。 */
 .surface-glow {
   background:
     linear-gradient(135deg, rgba(var(--rgb-flame-orange), 0.08), transparent 38%),
@@ -148,10 +155,12 @@ body {
   box-shadow: 0 0 20px rgba(var(--rgb-flame-orange), 0.12);
 }
 
+/* Hero 主視覺：雞圖專用火焰投影。 */
 .hero-mark {
   filter: drop-shadow(0 0 28px rgba(var(--rgb-flame-orange), 0.36));
 }
 
+/* 社群圖示互動：保留舊 SVG/LINE icon 的 hover 動畫支援。 */
 .social-icon svg,
 .line-icon {
   transition:
@@ -165,6 +174,7 @@ body {
   filter: drop-shadow(0 0 10px rgba(var(--rgb-flame-orange), 0.4));
 }
 
+/* 無障礙動態偏好：使用者要求減少動態時關閉轉場與動畫。 */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

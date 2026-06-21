@@ -7,13 +7,14 @@
       name="description"
       content="火候研究所，預約制桶烤全雞與火候時蔬，專注少量製作、桶烤火候與職人風味。"
     />
-    <title>火候研究所 Fire Roast Lab｜預約制桶烤全雞</title>
+    <title>火候研究所｜預約制桶烤全雞</title>
     <link rel="icon" href="assets/favicon/favicon.ico" />
-    <!-- Prototype note: Tailwind CDN is used for this static first-stage prototype. For production, migrate to Tailwind CLI/PostCSS build output. -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind utilities are compiled locally from css/tailwind.input.css. -->
+    <link rel="stylesheet" href="css/tailwind.css" />
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body class="font-sans text-lab-white antialiased">
+    <!-- Header：固定在頁面頂端的主導覽，包含品牌 Logo、桌面選單與手機選單按鈕。 -->
     <header
       class="sticky top-0 z-50 border-b border-flame-orange-40 bg-deep-charcoal-90 site-header-shadow backdrop-blur-xl"
     >
@@ -29,6 +30,7 @@
           />
         </a>
 
+        <!-- Desktop Nav：桌面版水平導覽，連到頁面內各主要內容區塊。 -->
         <div class="hidden items-center gap-8 lg:flex">
           <a class="relative text-sm font-semibold text-ember-gold after:absolute after:-bottom-2 after:left-1/2 after:h-0.5 after:w-7 after:-translate-x-1/2 after-bg-flame-orange" href="#home">首頁</a>
           <a class="text-sm font-medium text-lab-white-78 transition hover-text-ember-gold" href="#brand">品牌介紹</a>
@@ -38,6 +40,7 @@
           <a class="text-sm font-medium text-lab-white-78 transition hover-text-ember-gold" href="#contact">聯絡我們</a>
         </div>
 
+        <!-- Mobile Menu Button：小螢幕導覽開關，JS 會同步 aria-expanded 狀態。 -->
         <button
           id="menuButton"
           class="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-flame-orange-45 text-lab-white transition hover-border-ember-gold hover-text-ember-gold lg:hidden"
@@ -53,6 +56,7 @@
         </button>
       </nav>
 
+      <!-- Mobile Nav：手機版垂直選單，預設隱藏並由 js/main.js 控制顯示。 -->
       <div
         id="mobileMenu"
         class="hidden border-t border-flame-orange-25 bg-deep-charcoal px-5 py-5 shadow-ember lg:hidden"
@@ -68,7 +72,9 @@
       </div>
     </header>
 
+    <!-- Main：頁面主要內容容器，從 Hero 到商品與特色說明都集中在這裡。 -->
     <main id="home" class="overflow-hidden bg-deep-charcoal">
+      <!-- Hero：首頁第一屏主視覺，左側放品牌訊息與 CTA，右側放烈焰雞主圖。 -->
       <section class="relative">
         <div
           class="relative mx-auto grid max-w-7xl items-center gap-4 px-5 py-8 sm:px-6 sm:py-9 md:min-h-[430px] md:grid-cols-[0.9fr_1.1fr] md:gap-0 md:py-4 lg:min-h-[460px] lg:px-8 lg:py-4"
@@ -109,6 +115,7 @@
         </div>
       </section>
 
+      <!-- Brand：三欄品牌賣點，說明風味、火候與肉質特色。 -->
       <section id="brand" class="relative z-30 mx-auto max-w-7xl px-5 py-8 sm:px-6 md:mt-1 md:py-0 lg:-mt-2 lg:px-8 xl:mt-0">
         <div class="grid gap-4 md:grid-cols-3">
           <article class="ember-border rounded-lg bg-deep-charcoal p-5 transition hover-border-ember-gold hover-shadow-ember">
@@ -149,6 +156,7 @@
         </div>
       </section>
 
+      <!-- Reservation：主餐商品區，展示預約制桶烤全雞與火候流汁時蔬。 -->
       <section id="reservation" class="mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-8">
         <div class="mb-9 flex flex-col justify-between gap-4 md:flex-row md:items-end">
           <div>
@@ -200,6 +208,7 @@
         </div>
       </section>
 
+      <!-- Tips：五個火候與服務特色，補充食材、比例、烤法、客製與搭配。 -->
       <section class="mx-auto max-w-7xl px-5 py-14 sm:px-6 lg:px-8">
         <div class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
           <article class="surface-glow ember-border rounded-lg p-5 text-center transition hover-border-ember-gold hover-shadow-ember">
@@ -231,8 +240,10 @@
       </section>
     </main>
 
+    <!-- Footer：聯絡資訊區，包含 Footer Logo、地址時間與社群連結。 -->
     <footer id="contact" class="border-t border-flame-orange-35 bg-deep-charcoal">
       <div class="mx-auto grid max-w-5xl items-center gap-8 px-5 py-10 sm:px-6 md:grid-cols-[0.75fr_1.35fr_0.75fr] lg:px-8">
+        <!-- Footer Logo：品牌字標，桌面靠左、手機置中顯示。 -->
         <div class="flex flex-col items-center gap-3 md:items-start">
           <img
             class="w-full max-w-[240px] object-contain sm:max-w-[260px]"
@@ -241,6 +252,7 @@
           />
         </div>
 
+        <!-- Footer Info：地址、Google Map 入口、預約取餐時間與 LINE ID。 -->
         <address class="min-w-0 justify-self-center text-center text-sm not-italic leading-7 text-tech-gray sm:text-base md:text-left">
           <p class="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 md:justify-start">
             <span>地址：桃園市桃園區民生路547號</span>
@@ -265,6 +277,7 @@
           <p class="mt-1">LINE 官方帳號 ID： @344eyjcd</p>
         </address>
 
+        <!-- Footer Social：社群圖示連結，右欄集中管理外部社群入口。 -->
         <div class="flex items-center justify-center gap-6 md:justify-end" aria-label="Footer 社群連結">
           <a class="social-icon inline-flex h-14 w-14 items-center justify-center transition hover:-translate-y-0.5" href="https://www.facebook.com/profile.php?id=61590578969208" aria-label="Facebook">
             <img class="h-10 w-10 object-contain" src="assets/images/icons/facebook.png" alt="" />
@@ -277,11 +290,13 @@
           </a>
         </div>
       </div>
+      <!-- Copyright：頁尾版權資訊。 -->
       <div class="border-t border-lab-white-10 px-5 py-5 text-center text-sm text-tech-gray">
         © 2026 火候研究所 Fire Roast Lab. All Rights Reserved.
       </div>
     </footer>
 
+    <!-- Scripts：載入手機選單互動邏輯。 -->
     <script src="js/main.js"></script>
   </body>
 </html>
