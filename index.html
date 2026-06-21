@@ -11,95 +11,11 @@
     <link rel="icon" href="assets/favicon/favicon.ico" />
     <!-- Prototype note: Tailwind CDN is used for this static first-stage prototype. For production, migrate to Tailwind CLI/PostCSS build output. -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              charcoal: "#0D0D0D",
-              flame: "#FF3F00",
-              ember: "#FFAA00",
-              labWhite: "#F5F5F5",
-              techGray: "#8A8A8A",
-            },
-            fontFamily: {
-              sans: [
-                "system-ui",
-                "-apple-system",
-                "BlinkMacSystemFont",
-                "Segoe UI",
-                "Noto Sans TC",
-                "sans-serif",
-              ],
-            },
-            boxShadow: {
-              ember: "0 0 24px rgba(255, 63, 0, 0.18)",
-              flame: "0 0 42px rgba(255, 63, 0, 0.28)",
-            },
-            backgroundImage: {
-              emberRadial:
-                "radial-gradient(circle at 78% 18%, rgba(255, 63, 0, 0.18), transparent 31%), radial-gradient(circle at 18% 14%, rgba(255, 170, 0, 0.08), transparent 22%), linear-gradient(180deg, #0D0D0D 0%, #070707 100%)",
-            },
-          },
-        },
-      };
-    </script>
-    <style>
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        background: #0d0d0d;
-      }
-
-      .ember-border {
-        border: 1px solid rgba(255, 63, 0, 0.45);
-      }
-
-      .surface-glow {
-        background:
-          linear-gradient(135deg, rgba(255, 63, 0, 0.08), transparent 38%),
-          rgba(18, 18, 18, 0.82);
-        box-shadow: 0 0 20px rgba(255, 63, 0, 0.12);
-      }
-
-      .hero-mark {
-        filter: drop-shadow(0 0 28px rgba(255, 63, 0, 0.36));
-      }
-
-      .social-icon svg,
-      .line-icon {
-        transition:
-          transform 180ms ease,
-          filter 180ms ease;
-      }
-
-      .social-icon:hover svg,
-      .social-icon:hover .line-icon {
-        transform: translateY(-2px);
-        filter: drop-shadow(0 0 10px rgba(255, 63, 0, 0.4));
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        html {
-          scroll-behavior: auto;
-        }
-
-        *,
-        *::before,
-        *::after {
-          animation-duration: 0.01ms !important;
-          animation-iteration-count: 1 !important;
-          scroll-behavior: auto !important;
-          transition-duration: 0.01ms !important;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
-  <body class="font-sans text-labWhite antialiased">
+  <body class="font-sans text-lab-white antialiased">
     <header
-      class="sticky top-0 z-50 border-b border-flame/40 bg-charcoal/90 shadow-[0_10px_30px_rgba(0,0,0,0.38)] backdrop-blur-xl"
+      class="sticky top-0 z-50 border-b border-flame-orange-40 bg-deep-charcoal-90 site-header-shadow backdrop-blur-xl"
     >
       <nav
         class="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-6 lg:px-8"
@@ -114,17 +30,17 @@
         </a>
 
         <div class="hidden items-center gap-8 lg:flex">
-          <a class="relative text-sm font-semibold text-ember after:absolute after:-bottom-2 after:left-1/2 after:h-0.5 after:w-7 after:-translate-x-1/2 after:bg-flame" href="#home">首頁</a>
-          <a class="text-sm font-medium text-labWhite/78 transition hover:text-ember" href="#brand">品牌介紹</a>
-          <a class="text-sm font-medium text-labWhite/78 transition hover:text-ember" href="#roast">爐烤介紹</a>
-          <a class="text-sm font-medium text-labWhite/78 transition hover:text-ember" href="#tips">火候建議</a>
-          <a class="text-sm font-medium text-labWhite/78 transition hover:text-ember" href="#reservation">預約方式</a>
-          <a class="text-sm font-medium text-labWhite/78 transition hover:text-ember" href="#contact">聯絡我們</a>
+          <a class="relative text-sm font-semibold text-ember-gold after:absolute after:-bottom-2 after:left-1/2 after:h-0.5 after:w-7 after:-translate-x-1/2 after-bg-flame-orange" href="#home">首頁</a>
+          <a class="text-sm font-medium text-lab-white-78 transition hover-text-ember-gold" href="#brand">品牌介紹</a>
+          <a class="text-sm font-medium text-lab-white-78 transition hover-text-ember-gold" href="#roast">爐烤介紹</a>
+          <a class="text-sm font-medium text-lab-white-78 transition hover-text-ember-gold" href="#tips">火候建議</a>
+          <a class="text-sm font-medium text-lab-white-78 transition hover-text-ember-gold" href="#reservation">預約方式</a>
+          <a class="text-sm font-medium text-lab-white-78 transition hover-text-ember-gold" href="#contact">聯絡我們</a>
         </div>
 
         <button
           id="menuButton"
-          class="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-flame/45 text-labWhite transition hover:border-ember hover:text-ember lg:hidden"
+          class="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-flame-orange-45 text-lab-white transition hover-border-ember-gold hover-text-ember-gold lg:hidden"
           type="button"
           aria-controls="mobileMenu"
           aria-expanded="false"
@@ -139,20 +55,20 @@
 
       <div
         id="mobileMenu"
-        class="hidden border-t border-flame/25 bg-[#080808] px-5 py-5 shadow-ember lg:hidden"
+        class="hidden border-t border-flame-orange-25 bg-deep-charcoal px-5 py-5 shadow-ember lg:hidden"
       >
         <div class="mx-auto grid max-w-7xl gap-1">
-          <a class="rounded-lg px-3 py-3 text-lg font-semibold text-ember" href="#home">首頁</a>
-          <a class="rounded-lg px-3 py-3 text-lg font-medium text-labWhite/85 hover:bg-flame/10 hover:text-ember" href="#brand">品牌介紹</a>
-          <a class="rounded-lg px-3 py-3 text-lg font-medium text-labWhite/85 hover:bg-flame/10 hover:text-ember" href="#roast">爐烤介紹</a>
-          <a class="rounded-lg px-3 py-3 text-lg font-medium text-labWhite/85 hover:bg-flame/10 hover:text-ember" href="#tips">火候建議</a>
-          <a class="rounded-lg px-3 py-3 text-lg font-medium text-labWhite/85 hover:bg-flame/10 hover:text-ember" href="#reservation">預約方式</a>
-          <a class="rounded-lg px-3 py-3 text-lg font-medium text-labWhite/85 hover:bg-flame/10 hover:text-ember" href="#contact">聯絡我們</a>
+          <a class="rounded-lg px-3 py-3 text-lg font-semibold text-ember-gold" href="#home">首頁</a>
+          <a class="rounded-lg px-3 py-3 text-lg font-medium text-lab-white-85 hover-bg-flame-orange-10 hover-text-ember-gold" href="#brand">品牌介紹</a>
+          <a class="rounded-lg px-3 py-3 text-lg font-medium text-lab-white-85 hover-bg-flame-orange-10 hover-text-ember-gold" href="#roast">爐烤介紹</a>
+          <a class="rounded-lg px-3 py-3 text-lg font-medium text-lab-white-85 hover-bg-flame-orange-10 hover-text-ember-gold" href="#tips">火候建議</a>
+          <a class="rounded-lg px-3 py-3 text-lg font-medium text-lab-white-85 hover-bg-flame-orange-10 hover-text-ember-gold" href="#reservation">預約方式</a>
+          <a class="rounded-lg px-3 py-3 text-lg font-medium text-lab-white-85 hover-bg-flame-orange-10 hover-text-ember-gold" href="#contact">聯絡我們</a>
         </div>
       </div>
     </header>
 
-    <main id="home" class="overflow-hidden bg-charcoal">
+    <main id="home" class="overflow-hidden bg-deep-charcoal">
       <section class="relative">
         <div
           class="relative mx-auto grid max-w-7xl items-center gap-4 px-5 py-8 sm:px-6 sm:py-9 md:min-h-[430px] md:grid-cols-[0.9fr_1.1fr] md:gap-0 md:py-4 lg:min-h-[460px] lg:px-8 lg:py-4"
@@ -164,10 +80,10 @@
                 alt="火候研究所 Fire Roast Lab"
               />
             <div class="md:-ml-8 lg:-ml-10">
-              <h1 class="mt-2 text-2xl font-bold text-ember sm:text-3xl md:text-4xl lg:text-4xl">
+              <h1 class="mt-2 text-2xl font-bold text-ember-gold sm:text-3xl md:text-4xl lg:text-4xl">
                 預約制桶烤全雞
               </h1>
-              <p class="mt-3 max-w-xl text-base leading-7 text-labWhite/78 sm:text-lg md:mx-0 md:max-w-xl md:text-xl md:leading-9">
+              <p class="mt-3 max-w-xl text-base leading-7 text-lab-white-78 sm:text-lg md:mx-0 md:max-w-xl md:text-xl md:leading-9">
                 我們不賣速食，我們研究的是「如何讓一隻雞烤到讓人想報警」的美味科學。
               </p>
             </div>
@@ -175,7 +91,7 @@
             <div class="mt-5 flex flex-col items-stretch justify-center gap-4 sm:flex-row sm:items-center md:justify-center">
               <a
                 href="#reservation"
-                class="inline-flex min-h-11 items-center justify-center rounded-lg bg-flame px-8 py-3 text-lg font-bold text-white transition hover:-translate-y-0.5 hover:bg-[#ff551f] hover:shadow-flame focus:outline-none focus:ring-2 focus:ring-ember focus:ring-offset-2 focus:ring-offset-charcoal"
+                class="inline-flex min-h-11 items-center justify-center rounded-lg bg-flame-orange px-8 py-3 text-lg font-bold text-lab-white transition hover:-translate-y-0.5 hover-bg-flame-orange hover-shadow-flame focus:outline-none focus-ring-ember-offset-charcoal"
               >
                 立即預約
               </a>
@@ -183,7 +99,7 @@
           </div>
 
           <div class="pointer-events-none relative z-0 mx-auto -mb-3 flex w-full max-w-[660px] items-center justify-center md:-mb-12 md:max-w-none md:justify-end lg:-mb-16 xl:-mb-20">
-            <div class="absolute right-0 h-[82%] w-[88%] rounded-full bg-flame/20 blur-3xl" aria-hidden="true"></div>
+            <div class="absolute right-0 h-[82%] w-[88%] rounded-full bg-flame-orange-20 blur-3xl" aria-hidden="true"></div>
             <img
               class="hero-mark relative z-0 w-full max-w-[360px] object-contain sm:max-w-[640px] md:max-w-[840px] lg:max-w-[980px] xl:max-w-[1080px]"
               src="assets/images/hero/hero-chicken-nobg.png"
@@ -195,38 +111,38 @@
 
       <section id="brand" class="relative z-30 mx-auto max-w-7xl px-5 py-8 sm:px-6 md:mt-1 md:py-0 lg:-mt-2 lg:px-8 xl:mt-0">
         <div class="grid gap-4 md:grid-cols-3">
-          <article class="ember-border rounded-lg bg-charcoal p-5 transition hover:border-ember hover:shadow-ember">
+          <article class="ember-border rounded-lg bg-deep-charcoal p-5 transition hover-border-ember-gold hover-shadow-ember">
             <div class="flex gap-4">
               <div class="flex min-h-20 w-20 shrink-0 self-stretch items-center justify-center">
                 <img class="h-16 w-16 object-contain" src="assets/images/icons/flavoring.png" alt="" />
               </div>
               <div>
-                <h3 class="text-xl font-bold text-labWhite">獨家風味</h3>
-                <p class="mt-2 leading-7 text-techGray">獨家秘製醃料，體香風味，香氣四溢。</p>
+                <h3 class="text-xl font-bold text-lab-white">獨家風味</h3>
+                <p class="mt-2 leading-7 text-tech-gray">獨家秘製醃料，體香風味，香氣四溢。</p>
               </div>
             </div>
           </article>
 
-          <article id="roast" class="ember-border rounded-lg bg-charcoal p-5 transition hover:border-ember hover:shadow-ember">
+          <article id="roast" class="ember-border rounded-lg bg-deep-charcoal p-5 transition hover-border-ember-gold hover-shadow-ember">
             <div class="flex gap-4">
               <div class="flex min-h-20 w-20 shrink-0 self-stretch items-center justify-center">
                 <img class="h-16 w-16 object-contain" src="assets/images/icons/fire.png" alt="" />
               </div>
               <div>
-                <h3 class="text-xl font-bold text-labWhite">火候精準</h3>
-                <p class="mt-2 leading-7 text-techGray">科學掌控火候與時間，確保多汁鮮嫩。</p>
+                <h3 class="text-xl font-bold text-lab-white">火候精準</h3>
+                <p class="mt-2 leading-7 text-tech-gray">科學掌控火候與時間，確保多汁鮮嫩。</p>
               </div>
             </div>
           </article>
 
-          <article class="ember-border rounded-lg bg-charcoal p-5 transition hover:border-ember hover:shadow-ember">
+          <article class="ember-border rounded-lg bg-deep-charcoal p-5 transition hover-border-ember-gold hover-shadow-ember">
             <div class="flex gap-4">
               <div class="flex min-h-20 w-20 shrink-0 self-stretch items-center justify-center">
                 <img class="h-16 w-16 object-contain" src="assets/images/icons/turkey.png" alt="" />
               </div>
               <div>
-                <h3 class="text-xl font-bold text-labWhite">肉質多汁</h3>
-                <p class="mt-2 leading-7 text-techGray">300°C 高溫鎖火烘烤，外皮酥脆，鮮嫩多汁。</p>
+                <h3 class="text-xl font-bold text-lab-white">肉質多汁</h3>
+                <p class="mt-2 leading-7 text-tech-gray">300°C 高溫鎖火烘烤，外皮酥脆，鮮嫩多汁。</p>
               </div>
             </div>
           </article>
@@ -236,8 +152,8 @@
       <section id="reservation" class="mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-8">
         <div class="mb-9 flex flex-col justify-between gap-4 md:flex-row md:items-end">
           <div>
-            <h2 class="text-3xl font-black text-labWhite sm:text-4xl">招牌火候餐點</h2>
-            <p class="mt-3 max-w-2xl leading-7 text-techGray">
+            <h2 class="text-3xl font-black text-lab-white sm:text-4xl">招牌火候餐點</h2>
+            <p class="mt-3 max-w-2xl leading-7 text-tech-gray">
               少量製作、預約取餐，把時間留給炭火、肉汁與剛好的香氣層次。
             </p>
           </div>
@@ -246,15 +162,15 @@
         <div class="grid gap-6 lg:grid-cols-2">
           <article class="surface-glow ember-border grid overflow-hidden rounded-lg md:grid-cols-[0.95fr_1.05fr]">
             <div class="flex flex-col justify-center p-6 sm:p-8">
-              <p class="mb-4 w-fit rounded-lg border border-ember/55 px-3 py-1 text-sm font-bold text-ember">
+              <p class="mb-4 w-fit rounded-lg border border-ember-gold-55 px-3 py-1 text-sm font-bold text-ember-gold">
                 [2-4人享用]
               </p>
-              <h3 class="text-2xl font-black text-labWhite">招牌桶烤全雞</h3>
-              <p class="mt-4 leading-8 text-techGray">
+              <h3 class="text-2xl font-black text-lab-white">招牌桶烤全雞</h3>
+              <p class="mt-4 leading-8 text-tech-gray">
                 嚴選新鮮土雞，秘製配方慢火燻烤，皮酥肉嫩多汁。
               </p>
             </div>
-            <div class="relative min-h-64 overflow-hidden bg-black/30">
+            <div class="relative min-h-64 overflow-hidden bg-deep-charcoal-30">
               <img
                 class="h-full w-full object-contain p-4 transition duration-300 hover:scale-[1.03]"
                 src="assets/images/product/product-roast-chicken.png"
@@ -265,15 +181,15 @@
 
           <article id="tips" class="surface-glow ember-border grid overflow-hidden rounded-lg md:grid-cols-[0.95fr_1.05fr]">
             <div class="flex flex-col justify-center p-6 sm:p-8">
-              <p class="mb-4 w-fit rounded-lg border border-ember/55 px-3 py-1 text-sm font-bold text-ember">
+              <p class="mb-4 w-fit rounded-lg border border-ember-gold-55 px-3 py-1 text-sm font-bold text-ember-gold">
                 [2-4人享用]
               </p>
-              <h3 class="text-2xl font-black text-labWhite">火候流汁時蔬</h3>
-              <p class="mt-4 leading-8 text-techGray">
+              <h3 class="text-2xl font-black text-lab-white">火候流汁時蔬</h3>
+              <p class="mt-4 leading-8 text-tech-gray">
                 嚴選時令新鮮蔬菜，搭配秘製雞汁拌烤，風味豐富爽口。
               </p>
             </div>
-            <div class="relative min-h-64 overflow-hidden bg-black/30">
+            <div class="relative min-h-64 overflow-hidden bg-deep-charcoal-30">
               <img
                 class="h-full w-full object-contain p-4 transition duration-300 hover:scale-[1.03]"
                 src="assets/images/product/product-vegetables.png"
@@ -286,36 +202,36 @@
 
       <section class="mx-auto max-w-7xl px-5 py-14 sm:px-6 lg:px-8">
         <div class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
-          <article class="surface-glow ember-border rounded-lg p-5 text-center transition hover:border-ember hover:shadow-ember">
+          <article class="surface-glow ember-border rounded-lg p-5 text-center transition hover-border-ember-gold hover-shadow-ember">
             <img class="mx-auto h-14 w-14 object-contain" src="assets/images/icons/icon-check.png" alt="" />
-            <h3 class="mt-4 font-bold text-labWhite">新鮮食材</h3>
-            <p class="mt-2 text-sm leading-6 text-techGray">嚴選每日食材，保留原味鮮甜。</p>
+            <h3 class="mt-4 font-bold text-lab-white">新鮮食材</h3>
+            <p class="mt-2 text-sm leading-6 text-tech-gray">嚴選每日食材，保留原味鮮甜。</p>
           </article>
-          <article class="surface-glow ember-border rounded-lg p-5 text-center transition hover:border-ember hover:shadow-ember">
+          <article class="surface-glow ember-border rounded-lg p-5 text-center transition hover-border-ember-gold hover-shadow-ember">
             <img class="mx-auto h-14 w-14 object-contain" src="assets/images/icons/icon-fire.png" alt="" />
-            <h3 class="mt-4 font-bold text-labWhite">黃金比例</h3>
-            <p class="mt-2 text-sm leading-6 text-techGray">醬香、炭香與肉汁比例剛好。</p>
+            <h3 class="mt-4 font-bold text-lab-white">黃金比例</h3>
+            <p class="mt-2 text-sm leading-6 text-tech-gray">醬香、炭香與肉汁比例剛好。</p>
           </article>
-          <article class="surface-glow ember-border rounded-lg p-5 text-center transition hover:border-ember hover:shadow-ember">
+          <article class="surface-glow ember-border rounded-lg p-5 text-center transition hover-border-ember-gold hover-shadow-ember">
             <img class="mx-auto h-14 w-14 object-contain" src="assets/images/icons/icon-barrel-roast.png" alt="" />
-            <h3 class="mt-4 font-bold text-labWhite">低溫慢烤</h3>
-            <p class="mt-2 text-sm leading-6 text-techGray">等待火候轉化出厚實香氣。</p>
+            <h3 class="mt-4 font-bold text-lab-white">低溫慢烤</h3>
+            <p class="mt-2 text-sm leading-6 text-tech-gray">等待火候轉化出厚實香氣。</p>
           </article>
-          <article class="surface-glow ember-border rounded-lg p-5 text-center transition hover:border-ember hover:shadow-ember">
+          <article class="surface-glow ember-border rounded-lg p-5 text-center transition hover-border-ember-gold hover-shadow-ember">
             <img class="mx-auto h-14 w-14 object-contain" src="assets/images/icons/icon-form.png" alt="" />
-            <h3 class="mt-4 font-bold text-labWhite">客製服務</h3>
-            <p class="mt-2 text-sm leading-6 text-techGray">依取餐需求安排製作節奏。</p>
+            <h3 class="mt-4 font-bold text-lab-white">客製服務</h3>
+            <p class="mt-2 text-sm leading-6 text-tech-gray">依取餐需求安排製作節奏。</p>
           </article>
-          <article class="surface-glow ember-border rounded-lg p-5 text-center transition hover:border-ember hover:shadow-ember">
+          <article class="surface-glow ember-border rounded-lg p-5 text-center transition hover-border-ember-gold hover-shadow-ember">
             <img class="mx-auto h-14 w-14 object-contain" src="assets/images/icons/icon-steam.png" alt="" />
-            <h3 class="mt-4 font-bold text-labWhite">多種搭配</h3>
-            <p class="mt-2 text-sm leading-6 text-techGray">主餐、時蔬與雞汁風味相襯。</p>
+            <h3 class="mt-4 font-bold text-lab-white">多種搭配</h3>
+            <p class="mt-2 text-sm leading-6 text-tech-gray">主餐、時蔬與雞汁風味相襯。</p>
           </article>
         </div>
       </section>
     </main>
 
-    <footer id="contact" class="border-t border-flame/35 bg-[#070707]">
+    <footer id="contact" class="border-t border-flame-orange-35 bg-deep-charcoal">
       <div class="mx-auto grid max-w-5xl items-center gap-8 px-5 py-10 sm:px-6 md:grid-cols-[0.75fr_1.35fr_0.75fr] lg:px-8">
         <div class="flex flex-col items-center gap-3 md:items-start">
           <img
@@ -325,7 +241,7 @@
           />
         </div>
 
-        <address class="min-w-0 justify-self-center text-center text-sm not-italic leading-7 text-techGray sm:text-base md:text-left">
+        <address class="min-w-0 justify-self-center text-center text-sm not-italic leading-7 text-tech-gray sm:text-base md:text-left">
           <p class="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 md:justify-start">
             <span>地址：桃園市桃園區民生路547號</span>
             <span class="whitespace-nowrap">(民生路與北埔路口)</span>
@@ -342,7 +258,7 @@
           <p class="mt-2">預約取餐時間：</p>
           <p class="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 md:justify-start">
             <span class="whitespace-nowrap">每週三 18:00 至 21:00</span>
-            <span class="hidden text-flame/70 sm:inline">|</span>
+            <span class="hidden text-flame-orange-70 sm:inline">|</span>
             <span class="whitespace-nowrap">每週六 12:30 至 21:00</span>
           </p>
           <p class="mt-1">(如有異動請詳見公告)</p>
@@ -361,7 +277,7 @@
           </a>
         </div>
       </div>
-      <div class="border-t border-labWhite/10 px-5 py-5 text-center text-sm text-techGray">
+      <div class="border-t border-lab-white-10 px-5 py-5 text-center text-sm text-tech-gray">
         © 2026 火候研究所 Fire Roast Lab. All Rights Reserved.
       </div>
     </footer>
