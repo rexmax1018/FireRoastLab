@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="火侯研究所預約訂購。先選日期，再選時段，卡好你的桶烤全雞出爐時間。"
+    />
+    <title>預約訂購｜火侯研究所</title>
+    <link rel="icon" href="assets/favicon/favicon.ico" />
+    <link rel="stylesheet" href="css/tailwind.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body data-page="order">
+    <div data-layout-header></div>
+
+    <main>
+      <section class="page-hero page-shell">
+        <div>
+          <h1>預約訂購</h1>
+          <p>先選日期，再挑時段。不要等到肚子餓才想起來，因為那時候通常只剩別人的香味。</p>
+        </div>
+        <img src="assets/images/icons/icon-calendar.png" alt="預約訂購圖示" />
+      </section>
+
+      <section class="order-flow page-shell" aria-labelledby="order-flow-title">
+        <div class="section-heading">
+          <h2 id="order-flow-title">五步驟卡位，不讓晚餐輸給臨時起意</h2>
+          <p>日期先決定，時段再鎖定。系統只顯示可不可預購，不公布庫存數字，免得大家一起焦慮。</p>
+        </div>
+
+        <form class="order-form" id="orderForm">
+          <section class="order-step">
+            <div class="step-heading">
+              <span>步驟 1</span>
+              <h3>取貨地點確認</h3>
+            </div>
+            <div class="locked-location" aria-label="預設取貨地點">
+              <strong>桃園民生路實驗室自取</strong>
+              <p>桃園市桃園區民生路547號 北埔路口</p>
+              <span>已鎖定</span>
+            </div>
+          </section>
+
+          <section class="order-step">
+            <div class="step-heading">
+              <span>步驟 2</span>
+              <h3>先選日期，再選時段</h3>
+            </div>
+            <div class="date-grid" id="dateGrid" aria-label="取餐日期"></div>
+            <div class="slot-grid" id="slotGrid" aria-label="取餐時段"></div>
+            <input type="hidden" id="selectedDate" name="selectedDate" />
+            <input type="hidden" id="selectedSlot" name="selectedSlot" />
+          </section>
+
+          <section class="order-step">
+            <div class="step-heading">
+              <span>步驟 3</span>
+              <h3>確認品項數量</h3>
+            </div>
+            <div class="quantity-row">
+              <div>
+                <strong>招牌桶烤全雞組合</strong>
+                <p>隨餐附贈：火侯烤時蔬、黃金精華雞汁、手撕防燙手套、獨門沾粉。這組合端回家，今晚就有交代。</p>
+              </div>
+              <div class="quantity-control" aria-label="調整數量">
+                <button type="button" id="decreaseQty" aria-label="減少數量">−</button>
+                <output id="quantityValue" for="decreaseQty increaseQty">1</output>
+                <button type="button" id="increaseQty" aria-label="增加數量">+</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="order-step">
+            <div class="step-heading">
+              <span>步驟 4</span>
+              <h3>聯絡人基本資料</h3>
+            </div>
+            <div class="field-grid">
+              <label>
+                <span>姓名</span>
+                <input type="text" name="name" autocomplete="name" required />
+              </label>
+              <label>
+                <span>聯絡電話</span>
+                <input type="tel" name="phone" autocomplete="tel" required />
+              </label>
+              <label>
+                <span>電子信箱</span>
+                <input type="email" name="email" autocomplete="email" required />
+              </label>
+              <label class="field-grid__full">
+                <span>特殊交辦備註</span>
+                <textarea name="note" rows="4" placeholder="如：是否需要切塊、想保留雞汁湯底"></textarea>
+              </label>
+            </div>
+          </section>
+
+          <section class="order-step order-step--checkout">
+            <div class="step-heading">
+              <span>步驟 5</span>
+              <h3>線上結帳發動</h3>
+            </div>
+            <div class="checkout-row">
+              <div class="order-summary" aria-live="polite">
+                <p id="summaryDate">取餐日期：尚未選擇</p>
+                <p id="summarySlot">取餐時段：尚未選擇</p>
+                <p id="summaryQty">預約數量：1 組</p>
+              </div>
+              <button class="button button--primary checkout-button" type="submit">確認預約，前往線上安全支付 ➔</button>
+            </div>
+            <p class="form-message" id="formMessage" role="status" aria-live="polite"></p>
+          </section>
+        </form>
+      </section>
+    </main>
+
+    <div data-layout-footer></div>
+
+    <script src="js/layout.js?v=20260625"></script>
+    <script src="js/main.js?v=20260625"></script>
+  </body>
+</html>
