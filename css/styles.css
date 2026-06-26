@@ -401,6 +401,10 @@ textarea {
   padding-top: 36px;
 }
 
+.section-block--tight .section-heading {
+  margin-bottom: 88px;
+}
+
 .section-heading {
   margin-bottom: 28px;
 }
@@ -452,10 +456,8 @@ textarea {
 .feature-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.026);
+  gap: 18px;
+  overflow: visible;
 }
 
 .feature-card,
@@ -502,24 +504,44 @@ textarea {
 }
 
 .feature-card {
-  min-height: 156px;
-  padding: 24px 28px;
-  border: 0;
-  border-right: 1px solid var(--line);
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
+  min-height: 300px;
+  padding: 24px 28px 28px;
+  overflow: visible;
+}
+
+.feature-card:hover {
+  border-color: rgba(255, 63, 0, 0.45);
+  background: radial-gradient(800px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(255, 63, 0, 0.12), transparent 40%), rgba(255, 255, 255, 0.055);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.42), 0 0 15px rgba(255, 63, 0, 0.15);
 }
 
 .feature-card:last-child {
-  border-right: 0;
+  border-right: 1px solid var(--line);
 }
 
 .feature-card img {
-  width: 52px;
-  height: 52px;
+  position: relative;
+  z-index: 1;
+  width: min(112%, 380px);
+  height: auto;
+  aspect-ratio: 1;
   object-fit: contain;
-  margin-bottom: 22px;
+  object-position: center bottom;
+  margin: -122px auto -56px;
+  filter: drop-shadow(0 16px 24px rgba(0, 0, 0, 0.34));
+  pointer-events: none;
+  transition: transform 450ms cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: center center;
+}
+
+.feature-card:hover img {
+  transform: scale(1.035);
+}
+
+.feature-card h3,
+.feature-card p {
+  position: relative;
+  z-index: 2;
 }
 
 .feature-card h3,
@@ -654,19 +676,44 @@ textarea {
 }
 
 .page-hero {
+  position: relative;
+  isolation: isolate;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 520px);
+  grid-template-columns: minmax(0, 680px) minmax(0, 1fr);
   align-items: center;
-  gap: 48px;
-  min-height: 420px;
-  padding: 76px 0 56px;
+  gap: 0;
+  aspect-ratio: 2172 / 724;
+  min-height: clamp(340px, 26vw, 392px);
+  padding: clamp(54px, 6vw, 76px) clamp(34px, 5vw, 72px);
+  overflow: hidden;
+}
+
+.page-hero > div {
+  position: relative;
+  z-index: 4;
+  max-width: min(620px, 58%);
 }
 
 .page-hero img {
-  width: min(100%, 500px);
-  max-height: 390px;
-  justify-self: end;
-  object-fit: contain;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: cover;
+  object-position: center right;
+  pointer-events: none;
+}
+
+.page-hero h1,
+.page-hero p {
+  position: relative;
+  z-index: 5;
+}
+
+.page-hero + .page-shell {
+  margin-top: clamp(44px, 5.5vw, 72px);
 }
 
 .page-hero__logo-stack {
@@ -1154,17 +1201,19 @@ textarea:focus {
   }
 
   .feature-grid {
-    gap: 0;
+    gap: 88px;
+  }
+
+  .feature-card img {
+    width: min(82vw, 420px);
+    margin-top: -118px;
+    margin-bottom: -58px;
   }
 
   .feature-card,
   .feature-card:last-child {
-    border-right: 0;
+    border-right: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
-  }
-
-  .feature-card:last-child {
-    border-bottom: 0;
   }
 
   .product-grid,
@@ -1234,14 +1283,23 @@ textarea:focus {
 
   .page-hero {
     grid-template-columns: 1fr;
-    min-height: auto;
-    padding-top: 56px;
+    min-height: clamp(380px, 64vw, 500px);
+    padding: clamp(56px, 8vw, 76px) clamp(28px, 6vw, 56px);
+  }
+
+  .page-hero > div {
+    max-width: min(600px, 76%);
   }
 
   .page-hero img {
-    justify-self: center;
-    width: min(86vw, 420px);
+    width: 100%;
+    height: 100%;
     max-height: none;
+    object-position: center right;
+  }
+
+  .page-hero + .page-shell {
+    margin-top: clamp(36px, 7vw, 56px);
   }
 
   .page-hero__logo-stack {
@@ -1324,8 +1382,23 @@ textarea:focus {
     font-size: clamp(2.22rem, 12vw, 3.2rem);
   }
 
+  .page-hero {
+    min-height: clamp(380px, 118vw, 460px);
+    padding: 52px 24px 56px;
+  }
+
+  .page-hero > div {
+    max-width: 100%;
+  }
+
   .page-hero img {
-    width: min(92vw, 340px);
+    width: 100%;
+    height: 100%;
+    object-position: 64% center;
+  }
+
+  .page-hero + .page-shell {
+    margin-top: 34px;
   }
 
   .hero-copy p,
@@ -1419,6 +1492,12 @@ textarea:focus {
     background: rgba(255, 170, 0, 0.08);
     border: 1px solid rgba(255, 170, 0, 0.24);
     box-shadow: none;
+  }
+
+  .feature-card img {
+    width: min(112%, 320px);
+    margin-top: -92px;
+    margin-bottom: -42px;
   }
 }
 
