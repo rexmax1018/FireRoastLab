@@ -1,5 +1,21 @@
-const initializeFireRoastLab = async () => {
-await window.fireRoastLayoutReady;
+const currentPage = document.body.dataset.page || "home";
+
+const markActiveNavigation = () => {
+  document.querySelectorAll(`[data-nav-id="${currentPage}"]`).forEach((link) => {
+    link.setAttribute("aria-current", "page");
+
+    if (link.classList.contains("nav-link")) {
+      link.classList.add("nav-link--active");
+    }
+
+    if (link.classList.contains("mobile-nav__link")) {
+      link.classList.add("mobile-nav__link--active");
+    }
+  });
+};
+
+const initializeFireRoastLab = () => {
+markActiveNavigation();
 
 const menuButton = document.querySelector("#menuButton");
 const mobileMenu = document.querySelector("#mobileMenu");
@@ -290,8 +306,50 @@ orderForm?.addEventListener("submit", (event) => {
     return;
   }
 
-  formMessage.textContent = "預約資料已確認，這隻狠雞正在等你完成線上安全支付。";
+  formMessage.textContent = "預約資料已送出，店家確認後才算完成預約。請留意電話或 Email 通知。";
 });
+
+  initializeScrollAnimations();
+  initializeSpotlightEffects();
+};
+
+const initializeScrollAnimations = () => {
+  const elements = document.querySelectorAll(".scroll-reveal");
+  if (elements.length === 0) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-revealed");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.1,
+      rootMargin: "0px 0px -40px 0px",
+    }
+  );
+
+  elements.forEach((el) => observer.observe(el));
+};
+
+const initializeSpotlightEffects = () => {
+  const cards = document.querySelectorAll(
+    ".feature-card, .product-card, .menu-item, .recipe-step, .story-block, .order-step, .contact-panel"
+  );
+
+  cards.forEach((card) => {
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      card.style.setProperty("--mouse-x", `${x}px`);
+      card.style.setProperty("--mouse-y", `${y}px`);
+    });
+  });
 };
 
 initializeFireRoastLab();

@@ -9,37 +9,78 @@
     />
     <title>研究菜單｜火侯研究所</title>
     <link rel="icon" href="assets/favicon/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Outfit:wght@300;400;500;600;700;900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/tailwind.css" />
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body data-page="menu">
-    <div data-layout-header></div>
+    <header class="site-header">
+      <nav class="site-nav" aria-label="主選單">
+        <a class="brand-link" href="index.html" aria-label="火侯研究所首頁">
+          <img src="assets/images/logo/logo-wordmark-2-trans.png" alt="火侯研究所 Fire Roast Lab" />
+        </a>
+
+        <div class="desktop-nav">
+          <a class="nav-link" data-nav-id="home" href="index.html">首頁</a>
+          <a class="nav-link" data-nav-id="about" href="about.html">品牌故事</a>
+          <a class="nav-link" data-nav-id="menu" href="menu.html">研究菜單</a>
+          <a class="nav-link nav-link--cta" data-nav-id="order" href="order.html">預約搶購</a>
+          <a class="nav-link" data-nav-id="contact" href="contact.html">聯絡情報</a>
+        </div>
+
+        <button class="menu-toggle" id="menuButton" type="button" aria-controls="mobileMenu" aria-expanded="false"
+          aria-label="開啟選單">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16" />
+          </svg>
+        </button>
+      </nav>
+
+      <div class="mobile-nav" id="mobileMenu" hidden>
+        <a class="mobile-nav__link" data-nav-id="home" href="index.html">首頁</a>
+        <a class="mobile-nav__link" data-nav-id="about" href="about.html">品牌故事</a>
+        <a class="mobile-nav__link" data-nav-id="menu" href="menu.html">研究菜單</a>
+        <a class="mobile-nav__link mobile-nav__link--cta" data-nav-id="order" href="order.html">預約搶購</a>
+        <a class="mobile-nav__link" data-nav-id="contact" href="contact.html">聯絡情報</a>
+      </div>
+    </header>
 
     <main>
       <section class="page-hero page-shell">
         <div>
           <h1>研究菜單</h1>
-          <p>主菜、時蔬與雞汁都來自同一爐火。這不是普通套餐，是一套會讓朋友問「你哪裡買的」的晚餐解法。</p>
+          <p>主烤全雞、當季時蔬與精油雞汁皆孕育自同一爐火。這不只是套餐，而是一套保證被朋友追問「你哪裡搶到的」的終極晚餐方案。</p>
         </div>
-        <img src="assets/images/product/product-roast-chicken.png" alt="招牌桶烤全雞" />
+        <img src="assets/images/product/menu-hero.png" alt="火侯研究所研究菜單" />
       </section>
 
       <section class="menu-combo page-shell" aria-label="菜單品項">
-        <article class="menu-item">
-          <img src="assets/images/product/product-roast-chicken.png" alt="招牌桶烤全雞" />
+        <article class="menu-item scroll-reveal">
+          <figure class="product-image-block">
+            <img src="assets/images/product/product-roast-chicken.png" alt="招牌桶烤全雞" />
+            <figcaption class="product-image-note">圖片僅供參考</figcaption>
+          </figure>
           <div>
             <h2>招牌桶烤全雞</h2>
-            <p class="spec-label">適合 2-4 人分享 ｜ 附專用手套與手撕指南</p>
-            <p>整隻雞以科學比例醃製後進桶，外皮被熱氣收得脆亮，內層肉汁還留著。附火侯烤時蔬、黃金精華雞汁、手撕防燙手套與獨門沾粉，手撕那刻就是開場。</p>
+            <p class="spec-label">適合 2-4 人分享 ｜ 附一次性手套、胡椒鹽</p>
+            <p>特選全雞以科學醃料入味，鎖入雙層鋼桶炙烤。金黃焦脆的外皮下裹著洶湧的雞汁。隨餐附贈依季節搭配的火候烤時蔬、滴落黃金精華雞汁、防燙手套與獨門特調沾粉。手撕那刻，就是美味盛宴的開始。</p>
           </div>
         </article>
 
-        <article class="menu-item">
-          <img src="assets/images/product/product-vegetables.png" alt="火侯雞汁時蔬" />
+        <article class="menu-item scroll-reveal">
+          <figure class="product-image-block">
+            <img src="assets/images/product/product-vegetables.png" alt="火侯雞汁時蔬" />
+            <figcaption class="product-image-note">圖片僅供參考</figcaption>
+          </figure>
           <div>
             <h2>火侯雞汁時蔬</h2>
-            <p class="spec-label">適合 2-4 人分享 ｜ 限量供應 ｜ 解鎖三種美味實驗</p>
-            <p>時蔬接住桶烤過程滴落的雞汁與油香，甜味、炭香與湯汁集中在盤底。你以為它是配角，它偏要搶鏡。</p>
+            <p class="spec-label">適合 2-4 人分享 ｜ 解鎖三種美味實驗</p>
+            <p>接住桶烤過程中滴落的精華雞汁與炭香油花，時蔬依季節與當日採買挑選，讓清甜、煙燻香與黃金湯汁收乾在盤底。它不是配角，而是搶佔所有人視線的目光小偷。</p>
           </div>
         </article>
       </section>
@@ -47,39 +88,73 @@
       <section class="recipe-section page-shell" aria-labelledby="recipe-title">
         <div class="section-heading section-heading--split">
           <div>
-            <h2 id="recipe-title">火侯烤時蔬怎麼吃？</h2>
-            <p>同一盤時蔬可以從配菜變主角，再變湯底。吃法不難，難的是不要一開始就把它吃光。</p>
+            <h2 id="recipe-title">火侯雞汁時蔬三種美味實驗</h2>
+            <p>每次開爐都會依季節調整時蔬組合，同一盤當令風味，可以從清爽配菜，晉升為拌麵主角，最後蛻變為完美湯底。吃法毫無難度，難的是你如何克制一開始就不小心吃光它的衝動。</p>
           </div>
-          <a class="button button--primary" href="order.html">預約訂購</a>
+          <a class="button button--primary" href="order.html">立即搶訂卡位</a>
         </div>
 
         <div class="recipe-grid">
-          <article class="recipe-step">
+          <article class="recipe-step scroll-reveal">
             <span>01</span>
-            <h3>直接配著吃</h3>
-            <p>一口現烤手撕雞肉、一口吸飽精華的時蔬，油脂與清甜在口中平衡得剛剛好。</p>
+            <h3>雙料清爽拌食</h3>
+            <p>一口金黃手撕雞肉，配上一口吸飽精油雞汁的當季現烤時蔬，油脂的香與時蔬的甜在口腔中達到極致平衡。</p>
             <img src="assets/images/product/product-veggie-1.png" alt="火侯雞汁時蔬" />
+            <p class="hint">時蔬會依季節與當日採買調整。</p>
           </article>
-          <article class="recipe-step">
+          <article class="recipe-step scroll-reveal">
             <span>02</span>
-            <h3>搭配麵線超對味</h3>
-            <p>把烤時蔬和底部的濃郁湯汁直接淋進台灣傳統麵線裡拌勻，香氣瞬間升級。</p>
+            <h3>黃金雞汁拌麵線</h3>
+            <p>將當季烤時蔬與底部濃醇香甜的雞汁精華，直接淋入台灣手工麵線拌勻，香氣與順滑度瞬間攀上巔峰。</p>
             <img src="assets/images/product/product-veggie-2.png" alt="火侯雞汁時蔬" />
-            <p class="hint">可依個人喜好自由加入麵條、冬粉、雞蛋或新鮮青菜。</p>
+            <p class="hint">推薦依個人喜好自由加入拉麵、冬粉、溫泉蛋或新鮮青菜，解鎖個人風味實驗。</p>
           </article>
-          <article class="recipe-step">
+          <article class="recipe-step scroll-reveal">
             <span>03</span>
-            <h3>沒吃完就煮湯</h3>
-            <p>直接加水煮開，變成鮮甜又有濃郁雞汁香氣的完美湯底。</p>
+            <h3>極品雞湯封尾</h3>
+            <p>吃完當季時蔬後，將餘下的精華湯汁直接沖入熱開水滾沸，瞬間化為一碗熱騰騰、香氣撲鼻的完美雞湯。</p>
             <img src="assets/images/product/product-veggie-3.png" alt="火侯雞汁時蔬" />
           </article>
         </div>
       </section>
     </main>
 
-    <div data-layout-footer></div>
+    <footer class="site-footer">
+      <div class="footer-grid page-shell">
+        <div>
+          <a class="footer-brand" href="index.html">
+            <img src="assets/images/logo/logo-horizon-2-trans.png" alt="" />
+          </a>
+        </div>
+        <div>
+          <h2>快速路徑</h2>
+          <nav aria-label="頁尾選單">
+            <a href="index.html">首頁</a>
+            <a href="about.html">品牌故事</a>
+            <a href="menu.html">研究菜單</a>
+            <a href="order.html">預約搶購</a>
+            <a href="contact.html">聯絡情報</a>
+          </nav>
+        </div>
+        <div>
+          <h2>取貨地點</h2>
+          <p>桃園市桃園區民生路547號（北埔路口）</p>
+          <iframe
+            class="footer-map"
+            title="火侯研究所 Google 地圖"
+            src="https://www.google.com/maps?q=%E6%A1%83%E5%9C%92%E5%B8%82%E6%A1%83%E5%9C%92%E5%8D%80%E6%B0%91%E7%94%9F%E8%B7%AF547%E8%99%9F&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+      <div class="footer-bottom page-shell">
+        <p>© 2026 火侯研究所 Fire Roast Lab. All Rights Reserved.</p>
+        <p>本站產品皆採線上預約當日現烤，不提供電話與現場隨到隨點，敬請見諒。</p>
+      </div>
+    </footer>
 
-    <script src="js/layout.js?v=20260625"></script>
     <script src="js/main.js?v=20260625"></script>
   </body>
 </html>

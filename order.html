@@ -5,48 +5,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="火侯研究所預約訂購。先選日期，再選時段，卡好你的桶烤全雞出爐時間。"
+      content="火侯研究所預約訂購。先選日期，再選時段，送出後待店家確認你的桶烤全雞出爐時間。"
     />
     <title>預約訂購｜火侯研究所</title>
     <link rel="icon" href="assets/favicon/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Outfit:wght@300;400;500;600;700;900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/tailwind.css" />
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body data-page="order">
-    <div data-layout-header></div>
+    <header class="site-header">
+      <nav class="site-nav" aria-label="主選單">
+        <a class="brand-link" href="index.html" aria-label="火侯研究所首頁">
+          <img src="assets/images/logo/logo-wordmark-2-trans.png" alt="火侯研究所 Fire Roast Lab" />
+        </a>
+
+        <div class="desktop-nav">
+          <a class="nav-link" data-nav-id="home" href="index.html">首頁</a>
+          <a class="nav-link" data-nav-id="about" href="about.html">品牌故事</a>
+          <a class="nav-link" data-nav-id="menu" href="menu.html">研究菜單</a>
+          <a class="nav-link nav-link--cta" data-nav-id="order" href="order.html">預約搶購</a>
+          <a class="nav-link" data-nav-id="contact" href="contact.html">聯絡情報</a>
+        </div>
+
+        <button class="menu-toggle" id="menuButton" type="button" aria-controls="mobileMenu" aria-expanded="false"
+          aria-label="開啟選單">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16" />
+          </svg>
+        </button>
+      </nav>
+
+      <div class="mobile-nav" id="mobileMenu" hidden>
+        <a class="mobile-nav__link" data-nav-id="home" href="index.html">首頁</a>
+        <a class="mobile-nav__link" data-nav-id="about" href="about.html">品牌故事</a>
+        <a class="mobile-nav__link" data-nav-id="menu" href="menu.html">研究菜單</a>
+        <a class="mobile-nav__link mobile-nav__link--cta" data-nav-id="order" href="order.html">預約搶購</a>
+        <a class="mobile-nav__link" data-nav-id="contact" href="contact.html">聯絡情報</a>
+      </div>
+    </header>
 
     <main>
       <section class="page-hero page-shell">
         <div>
-          <h1>預約訂購</h1>
-          <p>先選日期，再挑時段。不要等到肚子餓才想起來，因為那時候通常只剩別人的香味。</p>
+          <h1>預約搶購</h1>
+          <p>先選日期，再挑時段。千萬別等肚子抗議才來搶，因為那時你只能聞著別人抱走烤雞的空氣餘香嘆氣。</p>
         </div>
         <img src="assets/images/icons/icon-calendar.png" alt="預約訂購圖示" />
       </section>
 
       <section class="order-flow page-shell" aria-labelledby="order-flow-title">
         <div class="section-heading">
-          <h2 id="order-flow-title">五步驟卡位，不讓晚餐輸給臨時起意</h2>
-          <p>日期先決定，時段再鎖定。系統只顯示可不可預購，不公布庫存數字，免得大家一起焦慮。</p>
+          <h2 id="order-flow-title">五步驟精密卡位，別讓肚子輸給了猶豫不決</h2>
+          <p>先鎖定出爐日期，再鎖定黃金取餐時段。系統只顯示尚可預購或已額滿，送出預約後會由店家確認，收到確認通知才算正式完成預約。</p>
         </div>
 
         <form class="order-form" id="orderForm">
-          <section class="order-step">
+          <section class="order-step scroll-reveal">
             <div class="step-heading">
-              <span>步驟 1</span>
-              <h3>取貨地點確認</h3>
+              <span>Step 1</span>
+              <h3>確認取貨據點</h3>
             </div>
             <div class="locked-location" aria-label="預設取貨地點">
               <strong>桃園民生路實驗室自取</strong>
-              <p>桃園市桃園區民生路547號 北埔路口</p>
-              <span>已鎖定</span>
+              <p>桃園市桃園區民生路547號（北埔路口）</p>
+              <span>僅限自取</span>
             </div>
           </section>
 
-          <section class="order-step">
+          <section class="order-step scroll-reveal">
             <div class="step-heading">
-              <span>步驟 2</span>
-              <h3>先選日期，再選時段</h3>
+              <span>Step 2</span>
+              <h3>選擇出爐日期與黃金時段</h3>
             </div>
             <div class="date-grid" id="dateGrid" aria-label="取餐日期"></div>
             <div class="slot-grid" id="slotGrid" aria-label="取餐時段"></div>
@@ -54,15 +89,15 @@
             <input type="hidden" id="selectedSlot" name="selectedSlot" />
           </section>
 
-          <section class="order-step">
+          <section class="order-step scroll-reveal">
             <div class="step-heading">
-              <span>步驟 3</span>
+              <span>Step 3</span>
               <h3>確認品項數量</h3>
             </div>
             <div class="quantity-row">
               <div>
-                <strong>招牌桶烤全雞組合</strong>
-                <p>隨餐附贈：火侯烤時蔬、黃金精華雞汁、手撕防燙手套、獨門沾粉。這組合端回家，今晚就有交代。</p>
+                <strong>招牌桶烤全雞豪華組合</strong>
+                <p>隨餐附贈：依季節搭配的火候烤時蔬、極精華雞汁、防燙手套與獨門秘製沾粉。這一整套端回家，今晚你的晚餐絕對有最完美的交代。</p>
               </div>
               <div class="quantity-control" aria-label="調整數量">
                 <button type="button" id="decreaseQty" aria-label="減少數量">−</button>
@@ -72,35 +107,35 @@
             </div>
           </section>
 
-          <section class="order-step">
+          <section class="order-step scroll-reveal">
             <div class="step-heading">
-              <span>步驟 4</span>
+              <span>Step 4</span>
               <h3>聯絡人基本資料</h3>
             </div>
             <div class="field-grid">
               <label>
                 <span>姓名</span>
-                <input type="text" name="name" autocomplete="name" required />
+                <input type="text" name="name" autocomplete="name" required placeholder="請輸入聯絡人姓名" />
               </label>
               <label>
                 <span>聯絡電話</span>
-                <input type="tel" name="phone" autocomplete="tel" required />
+                <input type="tel" name="phone" autocomplete="tel" required placeholder="請輸入行動電話號碼" />
               </label>
               <label>
                 <span>電子信箱</span>
-                <input type="email" name="email" autocomplete="email" required />
+                <input type="email" name="email" autocomplete="email" required placeholder="請輸入 Email 以接收確認通知" />
               </label>
               <label class="field-grid__full">
-                <span>特殊交辦備註</span>
-                <textarea name="note" rows="4" placeholder="如：是否需要切塊、想保留雞汁湯底"></textarea>
+                <span>職人交辦特別備註</span>
+                <textarea name="note" rows="4" placeholder="如：是否需要切塊、是否保留完整湯底等特別需求"></textarea>
               </label>
             </div>
           </section>
 
-          <section class="order-step order-step--checkout">
+          <section class="order-step order-step--checkout scroll-reveal">
             <div class="step-heading">
-              <span>步驟 5</span>
-              <h3>線上結帳發動</h3>
+              <span>Step 5</span>
+              <h3>送出預約待確認</h3>
             </div>
             <div class="checkout-row">
               <div class="order-summary" aria-live="polite">
@@ -108,7 +143,7 @@
                 <p id="summarySlot">取餐時段：尚未選擇</p>
                 <p id="summaryQty">預約數量：1 組</p>
               </div>
-              <button class="button button--primary checkout-button" type="submit">確認預約，前往線上安全支付 ➔</button>
+              <button class="button button--primary checkout-button" type="submit">送出預約，等待店家確認 ➔</button>
             </div>
             <p class="form-message" id="formMessage" role="status" aria-live="polite"></p>
           </section>
@@ -116,9 +151,42 @@
       </section>
     </main>
 
-    <div data-layout-footer></div>
+    <footer class="site-footer">
+      <div class="footer-grid page-shell">
+        <div>
+          <a class="footer-brand" href="index.html">
+            <img src="assets/images/logo/logo-horizon-2-trans.png" alt="" />
+          </a>
+        </div>
+        <div>
+          <h2>快速路徑</h2>
+          <nav aria-label="頁尾選單">
+            <a href="index.html">首頁</a>
+            <a href="about.html">品牌故事</a>
+            <a href="menu.html">研究菜單</a>
+            <a href="order.html">預約搶購</a>
+            <a href="contact.html">聯絡情報</a>
+          </nav>
+        </div>
+        <div>
+          <h2>取貨地點</h2>
+          <p>桃園市桃園區民生路547號（北埔路口）</p>
+          <iframe
+            class="footer-map"
+            title="火侯研究所 Google 地圖"
+            src="https://www.google.com/maps?q=%E6%A1%83%E5%9C%92%E5%B8%82%E6%A1%83%E5%9C%92%E5%8D%80%E6%B0%91%E7%94%9F%E8%B7%AF547%E8%99%9F&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+      <div class="footer-bottom page-shell">
+        <p>© 2026 火侯研究所 Fire Roast Lab. All Rights Reserved.</p>
+        <p>本站產品皆採線上預約當日現烤，不提供電話與現場隨到隨點，敬請見諒。</p>
+      </div>
+    </footer>
 
-    <script src="js/layout.js?v=20260625"></script>
     <script src="js/main.js?v=20260625"></script>
   </body>
 </html>

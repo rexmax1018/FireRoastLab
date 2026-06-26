@@ -9,62 +9,130 @@
     />
     <title>品牌故事｜火侯研究所</title>
     <link rel="icon" href="assets/favicon/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Outfit:wght@300;400;500;600;700;900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/tailwind.css" />
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body data-page="about">
-    <div data-layout-header></div>
+    <header class="site-header">
+      <nav class="site-nav" aria-label="主選單">
+        <a class="brand-link" href="index.html" aria-label="火侯研究所首頁">
+          <img src="assets/images/logo/logo-wordmark-2-trans.png" alt="火侯研究所 Fire Roast Lab" />
+        </a>
+
+        <div class="desktop-nav">
+          <a class="nav-link" data-nav-id="home" href="index.html">首頁</a>
+          <a class="nav-link" data-nav-id="about" href="about.html">品牌故事</a>
+          <a class="nav-link" data-nav-id="menu" href="menu.html">研究菜單</a>
+          <a class="nav-link nav-link--cta" data-nav-id="order" href="order.html">預約搶購</a>
+          <a class="nav-link" data-nav-id="contact" href="contact.html">聯絡情報</a>
+        </div>
+
+        <button class="menu-toggle" id="menuButton" type="button" aria-controls="mobileMenu" aria-expanded="false"
+          aria-label="開啟選單">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16" />
+          </svg>
+        </button>
+      </nav>
+
+      <div class="mobile-nav" id="mobileMenu" hidden>
+        <a class="mobile-nav__link" data-nav-id="home" href="index.html">首頁</a>
+        <a class="mobile-nav__link" data-nav-id="about" href="about.html">品牌故事</a>
+        <a class="mobile-nav__link" data-nav-id="menu" href="menu.html">研究菜單</a>
+        <a class="mobile-nav__link mobile-nav__link--cta" data-nav-id="order" href="order.html">預約搶購</a>
+        <a class="mobile-nav__link" data-nav-id="contact" href="contact.html">聯絡情報</a>
+      </div>
+    </header>
 
     <main>
       <section class="page-hero page-shell">
         <div>
           <h1>品牌故事</h1>
-          <p>我們不是在賣「差不多熟」的雞。我們研究的是：怎麼讓你第一口就覺得，還好有訂。</p>
+          <p>我們不是在賣「差不多熟」的烤雞。我們研究的是：如何讓你咬下第一口時，在心裡吶喊「好險我有預訂！」</p>
         </div>
-        <img src="assets/images/logo/logo-symbol-trans.png" alt="火侯研究所品牌標誌" />
+        <img src="assets/images/logo/logo-symbol-trans.png" alt="火侯研究所品牌故事" />
       </section>
 
       <section class="story-layout page-shell">
-        <article class="story-block story-block--large">
+        <article class="story-block story-block--large scroll-reveal">
           <span>01</span>
-          <h2>從熱氣循環開始</h2>
+          <h2>從熱氣對流循環開始</h2>
           <p>
-            厚實鋼桶不是裝飾，是把香氣關起來的關鍵。炭火進桶後，熱氣沿內壁循環，油脂退場、香氣留下，外皮才會脆得有存在感。
+            厚實雙層鋼桶並非擺設，而是將香氣與溫度緊緊鎖住的關鍵。當炭火在桶底燃起，熱對流沿著圓弧內壁精密循環，逼出多餘油脂、封存無窮香氣，外皮因而脆得立體有感。
           </p>
         </article>
 
-        <article class="story-block">
+        <article class="story-block scroll-reveal">
           <span>02</span>
-          <h2>時間與溫度必須同時成立</h2>
+          <h2>時間與溫度必須完美契合</h2>
           <p>
-            火太急，皮先焦；時間不夠，肉不服；時間太久，肉汁會離家出走。每一爐都要看重量、醃製狀態與出爐節點，不給運氣插手。
+            火候太急，表皮焦黑；時間不夠，肉質生澀；烤得過久，飽滿肉汁便會離家出走。每一爐都必須根據雞隻重量、當日濕度與溫度節點精密調控，絕不把美味交給運氣。
           </p>
         </article>
 
-        <article class="story-block">
+        <article class="story-block scroll-reveal">
           <span>03</span>
-          <h2>醃製是風味校準</h2>
+          <h2>醃製是靈魂風味的校準</h2>
           <p>
-            香料不是越多越厲害。中藥、鹽度與時間要站在同一邊，雞肉底層才會有味，吃到骨邊也不空虛。
+            中藥草、辛香料的比例必須達到黃金平衡。我們拉長醃製時程，讓香氣透入最底層的每一寸肌肉纖維，即使吃到骨邊，依然濃郁有味，絕無冷場。
           </p>
         </article>
 
-        <article class="story-block story-block--wide">
+        <article class="story-block story-block--wide scroll-reveal">
           <span>04</span>
-          <h2>為什麼全面採預約制</h2>
+          <h2>我們控管爐火，更控管你的遺憾</h2>
           <p>
-            不是我們跩，是雞真的急不得。當天現烤數量由醃製批次、鋼桶容量與出爐節奏決定。隨到隨點會讓整個熱場亂掉，最後委屈的是你的晚餐。
+            堅持預約制不是為了傲嬌，而是美味真的急不得。每日現烤的數量受限於醃製時間與鋼桶負載。現場隨到隨點只會打亂出爐節奏，最後委屈的是你的晚餐。
           </p>
           <p class="statement">
-            我們不開放電話熱線與現場候位，全面改用線上系統精密控管每週限定的取餐時段。
+            為了確保送到你手上的烤雞都是最完美的黃金時刻，我們不設電話熱線、不開放現場候位，全面透過線上系統精密控管每週限定取餐時段。
           </p>
         </article>
       </section>
     </main>
 
-    <div data-layout-footer></div>
+    <footer class="site-footer">
+      <div class="footer-grid page-shell">
+        <div>
+          <a class="footer-brand" href="index.html">
+            <img src="assets/images/logo/logo-horizon-2-trans.png" alt="" />
+          </a>
+        </div>
+        <div>
+          <h2>快速路徑</h2>
+          <nav aria-label="頁尾選單">
+            <a href="index.html">首頁</a>
+            <a href="about.html">品牌故事</a>
+            <a href="menu.html">研究菜單</a>
+            <a href="order.html">預約搶購</a>
+            <a href="contact.html">聯絡情報</a>
+          </nav>
+        </div>
+        <div>
+          <h2>取貨地點</h2>
+          <p>桃園市桃園區民生路547號（北埔路口）</p>
+          <iframe
+            class="footer-map"
+            title="火侯研究所 Google 地圖"
+            src="https://www.google.com/maps?q=%E6%A1%83%E5%9C%92%E5%B8%82%E6%A1%83%E5%9C%92%E5%8D%80%E6%B0%91%E7%94%9F%E8%B7%AF547%E8%99%9F&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+      <div class="footer-bottom page-shell">
+        <p>© 2026 火侯研究所 Fire Roast Lab. All Rights Reserved.</p>
+        <p>本站產品皆採線上預約當日現烤，不提供電話與現場隨到隨點，敬請見諒。</p>
+      </div>
+    </footer>
 
-    <script src="js/layout.js?v=20260625"></script>
     <script src="js/main.js?v=20260625"></script>
   </body>
 </html>
