@@ -722,28 +722,6 @@ textarea {
   margin-top: clamp(44px, 5.5vw, 72px);
 }
 
-.page-hero__logo-stack {
-  display: grid;
-  justify-self: end;
-  justify-items: center;
-  gap: 14px;
-  width: min(100%, 500px);
-}
-
-.page-hero__logo-stack img {
-  justify-self: center;
-  object-fit: contain;
-}
-
-.page-hero .page-hero__symbol {
-  width: min(42%, 210px);
-}
-
-.page-hero .page-hero__wordmark-logo {
-  width: min(100%, 430px);
-  border-radius: 8px;
-}
-
 .story-layout {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1355,25 +1333,6 @@ textarea:focus {
 
   .page-hero + .page-shell {
     margin-top: clamp(36px, 7vw, 56px);
-  }
-
-  .page-hero__logo-stack {
-    justify-self: center;
-    justify-items: center;
-    gap: 12px;
-    width: min(86vw, 420px);
-  }
-
-  .page-hero__logo-stack img {
-    justify-self: center;
-  }
-
-  .page-hero .page-hero__symbol {
-    width: min(42vw, 164px);
-  }
-
-  .page-hero .page-hero__wordmark-logo {
-    width: min(80vw, 320px);
   }
 
   .story-layout,

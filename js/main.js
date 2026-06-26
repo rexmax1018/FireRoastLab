@@ -60,6 +60,12 @@ const increaseQty = document.querySelector("#increaseQty");
 const orderForm = document.querySelector("#orderForm");
 const formMessage = document.querySelector("#formMessage");
 
+const setFormMessage = (message) => {
+  if (formMessage) {
+    formMessage.textContent = message;
+  }
+};
+
 const orderCalendar = [
   {
     id: "2026-07-01",
@@ -292,21 +298,21 @@ orderForm?.addEventListener("submit", (event) => {
   event.preventDefault();
 
   if (!selectedDateId) {
-    formMessage.textContent = "請先選擇想把這隻狠雞帶回家的日期。";
+    setFormMessage("請先選擇想把這隻狠雞帶回家的日期。");
     return;
   }
 
   if (!selectedSlotId) {
-    formMessage.textContent = "請再選一個尚可預購的取餐時段。";
+    setFormMessage("請再選一個尚可預購的取餐時段。");
     return;
   }
 
   if (!orderForm.reportValidity()) {
-    formMessage.textContent = "請確認姓名、聯絡電話與電子信箱皆已填寫。";
+    setFormMessage("請確認姓名、聯絡電話與電子信箱皆已填寫。");
     return;
   }
 
-  formMessage.textContent = "預約資料已送出，店家確認後才算完成預約。請留意電話或 Email 通知。";
+  setFormMessage("預約資料已送出，店家確認後才算完成預約。請留意電話或 Email 通知。");
 });
 
   initializeScrollAnimations();
