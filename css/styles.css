@@ -1126,7 +1126,9 @@ textarea:focus {
 }
 
 .terms-link:focus-visible,
-.terms-modal__close:focus-visible {
+.terms-modal__close:focus-visible,
+.completion-modal__close:focus-visible,
+.completion-modal__query:focus-visible {
   outline: 3px solid rgba(255, 170, 0, 0.72);
   outline-offset: 3px;
 }
@@ -1137,11 +1139,13 @@ textarea:focus {
   font-weight: 850;
 }
 
-.terms-modal[hidden] {
+.terms-modal[hidden],
+.completion-modal[hidden] {
   display: none;
 }
 
-.terms-modal {
+.terms-modal,
+.completion-modal {
   position: fixed;
   inset: 0;
   z-index: 120;
@@ -1153,7 +1157,8 @@ textarea:focus {
   -webkit-backdrop-filter: blur(18px) saturate(135%);
 }
 
-.terms-modal__panel {
+.terms-modal__panel,
+.completion-modal__panel {
   display: grid;
   grid-template-rows: minmax(0, 1fr) auto;
   width: min(760px, 100%);
@@ -1166,17 +1171,35 @@ textarea:focus {
   overflow: hidden;
 }
 
+.completion-modal__panel {
+  grid-template-rows: auto auto;
+  width: min(560px, 100%);
+}
+
 .terms-modal__content {
   min-height: 0;
   padding: 30px 32px 8px;
   overflow: auto;
 }
 
-.terms-modal__content h2 {
+.completion-modal__content {
+  padding: 32px 34px 10px;
+  text-align: center;
+}
+
+.terms-modal__content h2,
+.completion-modal__content h2 {
   margin: 0 0 20px;
   font-size: clamp(1.55rem, 3vw, 2.25rem);
   line-height: 1.2;
   font-weight: 950;
+}
+
+.completion-modal__content p:not(.section-kicker) {
+  margin: 0 auto;
+  max-width: 440px;
+  color: var(--muted);
+  line-height: 1.85;
 }
 
 .terms-modal__section {
@@ -1203,19 +1226,24 @@ textarea:focus {
   line-height: 1.85;
 }
 
-.terms-modal__actions {
+.terms-modal__actions,
+.completion-modal__actions {
   display: flex;
+  gap: 12px;
   justify-content: center;
   padding: 18px 24px 24px;
   border-top: 1px solid rgba(255, 170, 0, 0.22);
   background: rgba(13, 13, 13, 0.96);
 }
 
-.terms-modal__close {
+.terms-modal__close,
+.completion-modal__close,
+.completion-modal__query {
   min-width: 180px;
 }
 
-body.terms-modal-open {
+body.terms-modal-open,
+body.completion-modal-open {
   overflow: hidden;
 }
 
@@ -1752,19 +1780,26 @@ body.terms-modal-open {
     grid-template-columns: auto minmax(0, 1fr);
   }
 
-  .terms-modal {
+  .terms-modal,
+  .completion-modal {
     padding: 14px;
   }
 
-  .terms-modal__content {
+  .terms-modal__content,
+  .completion-modal__content {
     padding: 22px 20px 6px;
   }
 
-  .terms-modal__actions {
+  .terms-modal__actions,
+  .completion-modal__actions {
+    align-items: stretch;
+    flex-direction: column-reverse;
     padding: 14px 18px 18px;
   }
 
-  .terms-modal__close {
+  .terms-modal__close,
+  .completion-modal__close,
+  .completion-modal__query {
     width: 100%;
     min-width: 0;
   }

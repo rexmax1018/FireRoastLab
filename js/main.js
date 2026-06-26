@@ -63,6 +63,8 @@ const termsAgreement = document.querySelector("#termsAgreement");
 const termsModal = document.querySelector("#termsModal");
 const openTermsModal = document.querySelector("#openTermsModal");
 const closeTermsModal = document.querySelector("#closeTermsModal");
+const completionModal = document.querySelector("#completionModal");
+const closeCompletionModal = document.querySelector("#closeCompletionModal");
 const orderLookupForm = document.querySelector("#orderLookupForm");
 const lookupResult = document.querySelector("#lookupResult");
 const lookupMessage = document.querySelector("#lookupMessage");
@@ -78,6 +80,7 @@ const setFormMessage = (message) => {
 };
 
 let termsModalReturnFocus = null;
+let completionModalReturnFocus = null;
 
 const openTermsDialog = () => {
   if (!termsModal || !closeTermsModal) {
@@ -125,6 +128,60 @@ termsAgreement?.addEventListener("change", () => {
 
 termsAgreement?.addEventListener("invalid", () => {
   setFormMessage("請先勾選同意預訂須知與個資聲明。");
+});
+
+const openCompletionDialog = () => {
+  if (!completionModal || !closeCompletionModal) {
+    return;
+  }
+
+  completionModalReturnFocus = document.activeElement;
+  completionModal.hidden = false;
+  document.body.classList.add("completion-modal-open");
+  closeCompletionModal.focus();
+};
+
+const closeCompletionDialog = () => {
+  if (!completionModal) {
+    return;
+  }
+
+  completionModal.hidden = true;
+  document.body.classList.remove("completion-modal-open");
+
+  if (completionModalReturnFocus instanceof HTMLElement) {
+    completionModalReturnFocus.focus();
+  }
+};
+
+closeCompletionModal?.addEventListener("click", closeCompletionDialog);
+
+completionModal?.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    event.preventDefault();
+    event.stopPropagation();
+    return;
+  }
+
+  if (event.key !== "Tab") {
+    return;
+  }
+
+  const focusableElements = completionModal.querySelectorAll("button, a[href]");
+  if (focusableElements.length === 0) {
+    return;
+  }
+
+  const firstElement = focusableElements[0];
+  const lastElement = focusableElements[focusableElements.length - 1];
+
+  if (event.shiftKey && document.activeElement === firstElement) {
+    event.preventDefault();
+    lastElement.focus();
+  } else if (!event.shiftKey && document.activeElement === lastElement) {
+    event.preventDefault();
+    firstElement.focus();
+  }
 });
 
 const orderCalendar = [
@@ -381,7 +438,8 @@ orderForm?.addEventListener("submit", (event) => {
     return;
   }
 
-  setFormMessage("預約資料已送出，店家確認後才算完成預約。請留意電話或 Email 通知。");
+  setFormMessage("");
+  openCompletionDialog();
 });
 
 const mockLookupOrder = {

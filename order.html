@@ -174,7 +174,6 @@
     <div class="terms-modal" id="termsModal" role="dialog" aria-modal="true" aria-labelledby="termsModalTitle" hidden>
       <section class="terms-modal__panel" tabindex="-1">
         <div class="terms-modal__content">
-          <p class="section-kicker">Reservation Notice</p>
           <h2 id="termsModalTitle">火侯研究所預訂須知與個資聲明</h2>
 
           <section class="terms-modal__section">
@@ -216,6 +215,28 @@
       </section>
     </div>
 
+    <div
+      class="completion-modal"
+      id="completionModal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="completionModalTitle"
+      hidden
+    >
+      <section class="completion-modal__panel" tabindex="-1">
+        <div class="completion-modal__content">
+          <h2 id="completionModalTitle">預約資料已送出</h2>
+          <p>店家確認後才算完成預約，請留意電話或 Email 通知。你也可以前往訂單查詢頁，使用手機號碼與預定日期確認最新狀態。</p>
+        </div>
+        <div class="completion-modal__actions">
+          <button class="button button--ghost completion-modal__close" id="closeCompletionModal" type="button">
+            關閉
+          </button>
+          <a class="button button--primary completion-modal__query" href="order-query.html">前往訂單查詢</a>
+        </div>
+      </section>
+    </div>
+
     <footer class="site-footer">
       <div class="footer-grid page-shell">
         <div>
@@ -253,6 +274,6 @@
       </div>
     </footer>
 
-    <script src="js/main.js?v=20260627-terms"></script>
+    <script src="js/main.js?v=20260627-complete"></script>
   </body>
 </html>
