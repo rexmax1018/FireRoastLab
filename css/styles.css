@@ -694,16 +694,22 @@ textarea {
   max-width: min(620px, 58%);
 }
 
-.page-hero img {
+.page-hero > img,
+.page-hero__media {
   position: absolute;
   inset: 0;
   z-index: 1;
+  pointer-events: none;
+}
+
+.page-hero > img,
+.page-hero__media img {
+  display: block;
   width: 100%;
   height: 100%;
   max-height: none;
   object-fit: cover;
   object-position: center right;
-  pointer-events: none;
 }
 
 .page-hero h1,
@@ -784,6 +790,19 @@ textarea {
   display: grid;
   gap: 22px;
   padding-bottom: 56px;
+}
+
+.menu-combo__actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 4px;
+}
+
+.menu-combo__actions .button {
+  width: max-content;
+  min-width: 220px;
+  padding-inline: 1.65rem;
+  white-space: nowrap;
 }
 
 .menu-item {
@@ -1096,15 +1115,43 @@ textarea:focus {
 }
 
 .address-text {
-  color: var(--lab-white) !important;
+  color: var(--ember-gold) !important;
   font-size: clamp(1.55rem, 2.8vw, 2.35rem) !important;
   font-weight: 950;
   line-height: 1.35 !important;
 }
 
-.line-id {
-  color: var(--ember-gold) !important;
+.contact-detail {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.46rem;
+  width: fit-content;
+  max-width: 100%;
+  padding: 0.58rem 0.74rem;
+  color: var(--lab-white) !important;
+  font-weight: 850;
+  line-height: 1.45 !important;
+  border: 1px solid rgba(255, 170, 0, 0.34);
+  border-radius: 8px;
+  background: rgba(255, 170, 0, 0.08);
+}
+
+.contact-detail span {
+  color: var(--ember-gold);
   font-weight: 950;
+}
+
+.contact-detail a,
+.contact-detail strong {
+  color: inherit;
+  font-weight: 850;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.contact-detail a:hover {
+  color: var(--ember-gold);
 }
 
 .site-footer {
@@ -1291,7 +1338,8 @@ textarea:focus {
     max-width: min(600px, 76%);
   }
 
-  .page-hero img {
+  .page-hero > img,
+  .page-hero__media img {
     width: 100%;
     height: 100%;
     max-height: none;
@@ -1383,18 +1431,23 @@ textarea:focus {
   }
 
   .page-hero {
+    align-items: start;
     min-height: clamp(380px, 118vw, 460px);
-    padding: 52px 24px 56px;
+    padding: 30px 24px 56px;
   }
 
   .page-hero > div {
-    max-width: 100%;
+    max-width: min(100%, 330px);
+    align-self: start;
+    justify-self: start;
+    text-align: left;
   }
 
-  .page-hero img {
+  .page-hero > img,
+  .page-hero__media img {
     width: 100%;
     height: 100%;
-    object-position: 64% center;
+    object-position: center top;
   }
 
   .page-hero + .page-shell {
@@ -1435,6 +1488,15 @@ textarea:focus {
 
   .button {
     width: 100%;
+  }
+
+  .menu-combo__actions {
+    justify-content: stretch;
+  }
+
+  .menu-combo__actions .button {
+    width: 100%;
+    min-width: 0;
   }
 
   .section-block {
