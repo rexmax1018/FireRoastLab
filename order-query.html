@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="火侯研究所的品牌故事：以熱氣循環、時間溫度與預約制控管桃園桶烤全雞品質。"
+      content="火侯研究所訂單查詢。使用手機號碼與預定日期查詢預約狀態、取餐時間與訂購內容。"
     />
-    <title>品牌故事｜火侯研究所</title>
+    <title>訂單查詢｜火侯研究所</title>
     <link rel="icon" href="assets/favicon/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="css/tailwind.css" />
     <link rel="stylesheet" href="css/styles.css" />
   </head>
-  <body data-page="about">
+  <body data-page="query">
     <header class="site-header">
       <nav class="site-nav" aria-label="主選單">
         <a class="brand-link" href="index.html" aria-label="火侯研究所首頁">
@@ -46,58 +46,79 @@
         <a class="mobile-nav__link" data-nav-id="home" href="index.html">首頁</a>
         <a class="mobile-nav__link" data-nav-id="about" href="about.html">品牌故事</a>
         <a class="mobile-nav__link" data-nav-id="menu" href="menu.html">研究菜單</a>
-        <a class="mobile-nav__link" data-nav-id="contact" href="contact.html">聯絡情報</a>
-        <a class="mobile-nav__link" data-nav-id="query" href="order-query.html">訂單查詢</a>
         <a class="mobile-nav__link mobile-nav__link--cta" data-nav-id="order" href="order.html">預約搶購</a>
+        <a class="mobile-nav__link" data-nav-id="query" href="order-query.html">訂單查詢</a>
+        <a class="mobile-nav__link" data-nav-id="contact" href="contact.html">聯絡情報</a>
       </div>
     </header>
 
     <main>
       <section class="page-hero page-shell">
         <div>
-          <h1>品牌故事</h1>
-          <p>我們不是在賣「差不多熟」的烤雞。我們研究的是：如何讓你咬下第一口時，在心裡吶喊「好險我有預訂！」</p>
+          <h1>訂單查詢</h1>
+          <p>爐火行程一旦確認，香氣就開始倒數。出門前看一眼狀態，晚餐的期待就能準點落地。</p>
         </div>
         <picture class="page-hero__media">
-          <source media="(max-width: 520px)" srcset="assets/images/about/about-hero-mobile.png" />
-          <img src="assets/images/about/about-hero.png" alt="火侯研究所品牌故事" />
+          <source media="(max-width: 520px)" srcset="assets/images/order/order-hero-mobile.png" />
+          <img src="assets/images/order/order-hero.png" alt="火侯研究所訂單查詢" />
         </picture>
       </section>
 
-      <section class="story-layout page-shell">
-        <article class="story-block story-block--large scroll-reveal">
-          <span>01</span>
-          <h2>從熱氣對流循環開始</h2>
-          <p>
-            厚實雙層鋼桶並非擺設，而是將香氣與溫度緊緊鎖住的關鍵。當炭火在桶底燃起，熱對流沿著圓弧內壁精密循環，逼出多餘油脂、封存無窮香氣，外皮因而脆得立體有感。
-          </p>
+      <section class="lookup-section page-shell" aria-labelledby="lookup-title">
+        <article class="lookup-panel scroll-reveal">
+          <div class="section-heading">
+            <h2 id="lookup-title">確認預約狀態</h2>
+            <p>手機號碼與預定日期會對上你的取餐安排，讓這份炭香晚餐穩穩入列。</p>
+          </div>
+
+          <form class="lookup-form" id="orderLookupForm">
+            <label>
+              <span>手機號碼</span>
+              <input
+                id="lookupPhone"
+                type="tel"
+                name="phone"
+                inputmode="tel"
+                autocomplete="tel"
+                required
+                pattern="09[0-9]{8}"
+                placeholder="0912345678"
+                aria-describedby="lookupMessage"
+              />
+            </label>
+            <label>
+              <span>預定日期</span>
+              <input id="lookupDate" type="date" name="reservedDate" required aria-describedby="lookupMessage" />
+            </label>
+            <div class="lookup-actions">
+              <button class="button button--primary" type="submit">查詢訂單</button>
+              <a class="button button--ghost" href="order.html">回到預約</a>
+            </div>
+            <p class="form-message lookup-message" id="lookupMessage" role="status" aria-live="polite"></p>
+          </form>
         </article>
 
-        <article class="story-block scroll-reveal">
-          <span>02</span>
-          <h2>時間與溫度必須完美契合</h2>
-          <p>
-            火候太急，表皮焦黑；時間不夠，肉質生澀；烤得過久，飽滿肉汁便會離家出走。每一爐都必須根據雞隻重量、當日濕度與溫度節點精密調控，絕不把美味交給運氣。
-          </p>
-        </article>
-
-        <article class="story-block scroll-reveal">
-          <span>03</span>
-          <h2>醃製是靈魂風味的校準</h2>
-          <p>
-            中藥草、辛香料的比例必須達到黃金平衡。我們拉長醃製時程，讓香氣透入最底層的每一寸肌肉纖維，即使吃到骨邊，依然濃郁有味，絕無冷場。
-          </p>
-        </article>
-
-        <article class="story-block story-block--wide scroll-reveal">
-          <span>04</span>
-          <h2>我們控管爐火，更控管你的遺憾</h2>
-          <p>
-            堅持預約制不是為了傲嬌，而是美味真的急不得。每日現烤的數量受限於醃製時間與鋼桶負載。現場隨到隨點只會打亂出爐節奏，最後委屈的是你的晚餐。
-          </p>
-          <p class="statement">
-            為了確保送到你手上的烤雞都是最完美的黃金時刻，我們不設電話熱線、不開放現場候位，全面透過線上系統精密控管每週限定取餐時段。
-          </p>
+        <article class="lookup-result scroll-reveal" id="lookupResult" aria-live="polite" hidden>
+          <span class="lookup-result__eyebrow">訂單查詢結果</span>
+          <h2>店家已確認</h2>
+          <dl class="lookup-result-list">
+            <div class="lookup-result-row">
+              <dt>訂購人</dt>
+              <dd id="lookupCustomer">陳先生 / 小姐</dd>
+            </div>
+            <div class="lookup-result-row">
+              <dt>取餐時間</dt>
+              <dd id="lookupPickupTime">10月25日 (五) 18:00</dd>
+            </div>
+            <div class="lookup-result-row">
+              <dt>訂購內容</dt>
+              <dd id="lookupItems">招牌炭烤全雞 x 1</dd>
+            </div>
+            <div class="lookup-result-row lookup-result-row--status">
+              <dt>目前狀態</dt>
+              <dd id="lookupStatus">店家已確認，期待您的光臨！</dd>
+            </div>
+          </dl>
         </article>
       </section>
     </main>

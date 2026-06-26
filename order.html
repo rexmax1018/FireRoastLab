@@ -29,8 +29,9 @@
           <a class="nav-link" data-nav-id="home" href="index.html">首頁</a>
           <a class="nav-link" data-nav-id="about" href="about.html">品牌故事</a>
           <a class="nav-link" data-nav-id="menu" href="menu.html">研究菜單</a>
-          <a class="nav-link nav-link--cta" data-nav-id="order" href="order.html">預約搶購</a>
           <a class="nav-link" data-nav-id="contact" href="contact.html">聯絡情報</a>
+          <a class="nav-link" data-nav-id="query" href="order-query.html">訂單查詢</a>
+          <a class="nav-link nav-link--cta" data-nav-id="order" href="order.html">預約搶購</a>
         </div>
 
         <button class="menu-toggle" id="menuButton" type="button" aria-controls="mobileMenu" aria-expanded="false"
@@ -45,8 +46,9 @@
         <a class="mobile-nav__link" data-nav-id="home" href="index.html">首頁</a>
         <a class="mobile-nav__link" data-nav-id="about" href="about.html">品牌故事</a>
         <a class="mobile-nav__link" data-nav-id="menu" href="menu.html">研究菜單</a>
-        <a class="mobile-nav__link mobile-nav__link--cta" data-nav-id="order" href="order.html">預約搶購</a>
         <a class="mobile-nav__link" data-nav-id="contact" href="contact.html">聯絡情報</a>
+        <a class="mobile-nav__link" data-nav-id="query" href="order-query.html">訂單查詢</a>
+        <a class="mobile-nav__link mobile-nav__link--cta" data-nav-id="order" href="order.html">預約搶購</a>
       </div>
     </header>
 
@@ -148,11 +150,71 @@
               </div>
               <button class="button button--primary checkout-button" type="submit">送出預約，等待店家確認 ➔</button>
             </div>
+            <div class="terms-consent">
+              <input type="checkbox" id="termsAgreement" name="termsAgreement" required />
+              <div>
+                <label for="termsAgreement">我已詳閱並同意</label>
+                <button
+                  class="terms-link"
+                  id="openTermsModal"
+                  type="button"
+                  aria-haspopup="dialog"
+                  aria-controls="termsModal"
+                >
+                  「火侯研究所預訂須知與個資聲明」
+                </button>
+              </div>
+            </div>
             <p class="form-message" id="formMessage" role="status" aria-live="polite"></p>
           </section>
         </form>
       </section>
     </main>
+
+    <div class="terms-modal" id="termsModal" role="dialog" aria-modal="true" aria-labelledby="termsModalTitle" hidden>
+      <section class="terms-modal__panel" tabindex="-1">
+        <div class="terms-modal__content">
+          <p class="section-kicker">Reservation Notice</p>
+          <h2 id="termsModalTitle">火侯研究所預訂須知與個資聲明</h2>
+
+          <section class="terms-modal__section">
+            <h3>1. 預訂與確認機制</h3>
+            <ul>
+              <li>本系統填寫完畢並送出表單，僅代表完成「預約申請」。</li>
+              <li>因每日炭火烤雞數量有限且需耗時精心烘烤，您的訂單需經本所確認。請於送出後妥善保留您的預訂手機號碼，待店家將訂單狀態更新為「已確認」（或透過 LINE/簡訊通知），方為正式成立。</li>
+              <li>若遇該時段額滿或不可抗力之因素，本所保留取消訂單或與您協調更改取餐時間之權利。</li>
+            </ul>
+          </section>
+
+          <section class="terms-modal__section">
+            <h3>2. 取餐與逾時規範</h3>
+            <ul>
+              <li>為確保烤雞呈現最佳的風味與外皮脆度，請務必於您指定的「取餐時間」準時抵達。</li>
+              <li>若因故會延遲抵達，請務必提前主動聯繫本所。若逾時超過 30 分鐘且未主動聯繫，為顧及食品衛生與風味，本所有權取消該筆訂單，並將其釋出給現場候位顧客，同時可能影響您未來預訂之權益。</li>
+            </ul>
+          </section>
+
+          <section class="terms-modal__section">
+            <h3>3. 退換貨政策</h3>
+            <ul>
+              <li>依據《消費者保護法》第 19 條之規定，本所販售之烤雞屬「易於腐敗、保存期限較短」之生鮮食品，不適用七天鑑賞期之規定。</li>
+              <li>餐點經取餐確認無誤後，除品質異常外，恕不接受退換貨。</li>
+            </ul>
+          </section>
+
+          <section class="terms-modal__section">
+            <h3>4. 隱私權與個人資料保護</h3>
+            <ul>
+              <li>您於本表單填寫之姓名、手機號碼等資訊，僅供「火侯研究所」作為本次訂單之身分核對、狀態查詢、取餐聯繫及後續服務使用。</li>
+              <li>本所承諾盡力妥善保管您的個人資料，絕不外流或挪作其他無關之商業用途。</li>
+            </ul>
+          </section>
+        </div>
+        <div class="terms-modal__actions">
+          <button class="button button--primary terms-modal__close" id="closeTermsModal" type="button">關閉</button>
+        </div>
+      </section>
+    </div>
 
     <footer class="site-footer">
       <div class="footer-grid page-shell">
@@ -168,6 +230,7 @@
             <a href="about.html">品牌故事</a>
             <a href="menu.html">研究菜單</a>
             <a href="order.html">預約搶購</a>
+            <a href="order-query.html">訂單查詢</a>
             <a href="contact.html">聯絡情報</a>
           </nav>
         </div>
@@ -190,6 +253,6 @@
       </div>
     </footer>
 
-    <script src="js/main.js?v=20260625"></script>
+    <script src="js/main.js?v=20260627-terms"></script>
   </body>
 </html>
