@@ -847,25 +847,32 @@ textarea {
   position: relative;
   display: grid;
   gap: 28px;
+  isolation: isolate;
+  --timeline-x: 43px;
+  --timeline-card-offset: 88px;
+  --timeline-badge-size: 50px;
+  --timeline-badge-top: 24px;
 }
 
 .order-form::before {
   content: "";
   position: absolute;
-  top: 48px;
+  top: calc(var(--timeline-badge-top) + (var(--timeline-badge-size) / 2));
   bottom: 150px;
-  left: 43px;
+  left: var(--timeline-x);
   width: 2px;
   background: linear-gradient(to bottom, var(--flame-orange), var(--ember-gold), transparent);
   box-shadow: 0 0 8px rgba(255, 63, 0, 0.4);
-  z-index: 2;
+  z-index: 0;
   pointer-events: none;
 }
 
 .order-step {
   position: relative;
   z-index: 1;
-  padding: 32px 36px 36px 96px;
+  margin-left: var(--timeline-card-offset);
+  padding: 32px 36px 36px;
+  overflow: visible;
 }
 
 .step-heading {
@@ -878,10 +885,10 @@ textarea {
 
 .order-step .step-heading span {
   position: absolute;
-  left: 18px;
-  top: 24px;
-  width: 50px;
-  height: 50px;
+  left: calc(var(--timeline-x) - var(--timeline-card-offset) - (var(--timeline-badge-size) / 2));
+  top: var(--timeline-badge-top);
+  width: var(--timeline-badge-size);
+  height: var(--timeline-badge-size);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1529,6 +1536,7 @@ textarea:focus {
   }
 
   .order-step {
+    margin-left: 0;
     padding: 22px;
   }
 
