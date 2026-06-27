@@ -53,8 +53,11 @@ const selectedDateInput = document.querySelector("#selectedDate");
 const selectedSlotInput = document.querySelector("#selectedSlot");
 const summaryDate = document.querySelector("#summaryDate");
 const summarySlot = document.querySelector("#summarySlot");
-const summaryQty = document.querySelector("#summaryQty");
+const summaryItem = document.querySelector("#summaryItem");
+const summaryTotal = document.querySelector("#summaryTotal");
+const primaryOrderItem = document.querySelector("[data-order-item]");
 const quantityValue = document.querySelector("#quantityValue");
+const subtotalAmountValue = document.querySelector("#subtotalAmountValue");
 const decreaseQty = document.querySelector("#decreaseQty");
 const increaseQty = document.querySelector("#increaseQty");
 const orderForm = document.querySelector("#orderForm");
@@ -65,6 +68,11 @@ const openTermsModal = document.querySelector("#openTermsModal");
 const closeTermsModal = document.querySelector("#closeTermsModal");
 const completionModal = document.querySelector("#completionModal");
 const closeCompletionModal = document.querySelector("#closeCompletionModal");
+const completionOrderId = document.querySelector("#completionOrderId");
+const completionPhone = document.querySelector("#completionPhone");
+const completionDate = document.querySelector("#completionDate");
+const completionSlot = document.querySelector("#completionSlot");
+const completionStatus = document.querySelector("#completionStatus");
 const orderLookupForm = document.querySelector("#orderLookupForm");
 const lookupResult = document.querySelector("#lookupResult");
 const lookupMessage = document.querySelector("#lookupMessage");
@@ -76,6 +84,50 @@ const lookupStatus = document.querySelector("#lookupStatus");
 const setFormMessage = (message) => {
   if (formMessage) {
     formMessage.textContent = message;
+  }
+};
+
+const formatMoney = (amount) => `${amount.toLocaleString("zh-TW")} 元`;
+
+const getCurrentOrderSelection = () => {
+  const selectedDate = orderCalendar.find((date) => date.id === selectedDateId);
+  const selectedSlot = selectedDate?.slots.find((slot) => slot.id === selectedSlotId);
+
+  return {
+    selectedDate,
+    selectedSlot,
+  };
+};
+
+const createMockOrderId = () => {
+  const timestampPart = Date.now().toString().slice(-6);
+  const randomPart = Math.floor(Math.random() * 90 + 10);
+  return `FRL-${timestampPart}${randomPart}`;
+};
+
+const renderCompletionSummary = () => {
+  const formData = orderForm ? new FormData(orderForm) : null;
+  const phone = formData?.get("phone")?.toString().trim() || "尚未填寫";
+  const { selectedDate, selectedSlot } = getCurrentOrderSelection();
+
+  if (completionOrderId) {
+    completionOrderId.textContent = createMockOrderId();
+  }
+
+  if (completionPhone) {
+    completionPhone.textContent = phone;
+  }
+
+  if (completionDate) {
+    completionDate.textContent = selectedDate ? `${selectedDate.date} ${selectedDate.week}` : "尚未選擇";
+  }
+
+  if (completionSlot) {
+    completionSlot.textContent = selectedSlot?.time || "尚未選擇";
+  }
+
+  if (completionStatus) {
+    completionStatus.textContent = "預約申請已送出，待店家確認";
   }
 };
 
@@ -135,6 +187,7 @@ const openCompletionDialog = () => {
     return;
   }
 
+  renderCompletionSummary();
   completionModalReturnFocus = document.activeElement;
   completionModal.hidden = false;
   document.body.classList.add("completion-modal-open");
@@ -238,7 +291,8 @@ const orderCalendar = [
 
 let selectedDateId = "";
 let selectedSlotId = "";
-let quantity = 1;
+const itemUnitPrice = Number(primaryOrderItem?.dataset.unitPrice || 0);
+let quantity = 0;
 
 const getSlotStatus = (slot) => {
   if (slot.inventory > 0) {
@@ -249,8 +303,7 @@ const getSlotStatus = (slot) => {
 };
 
 const updateOrderSummary = () => {
-  const selectedDate = orderCalendar.find((date) => date.id === selectedDateId);
-  const selectedSlot = selectedDate?.slots.find((slot) => slot.id === selectedSlotId);
+  const { selectedDate, selectedSlot } = getCurrentOrderSelection();
 
   if (summaryDate) {
     summaryDate.textContent = selectedDate
@@ -264,12 +317,22 @@ const updateOrderSummary = () => {
       : "取餐時段：尚未選擇";
   }
 
-  if (summaryQty) {
-    summaryQty.textContent = `預約數量：${quantity} 組`;
+  const subtotalAmount = itemUnitPrice * quantity;
+
+  if (summaryItem) {
+    summaryItem.textContent = `訂購內容：招牌桶烤全雞豪華組合 x ${quantity}`;
+  }
+
+  if (summaryTotal) {
+    summaryTotal.textContent = `合計金額：${formatMoney(subtotalAmount)}`;
   }
 
   if (quantityValue) {
     quantityValue.textContent = String(quantity);
+  }
+
+  if (subtotalAmountValue) {
+    subtotalAmountValue.textContent = formatMoney(subtotalAmount);
   }
 
   if (selectedDateInput) {
@@ -403,7 +466,7 @@ if (dateGrid && slotGrid) {
 }
 
 decreaseQty?.addEventListener("click", () => {
-  quantity = Math.max(1, quantity - 1);
+  quantity = Math.max(0, quantity - 1);
   updateOrderSummary();
 });
 
@@ -434,7 +497,7 @@ orderForm?.addEventListener("submit", (event) => {
   }
 
   if (!orderForm.reportValidity()) {
-    setFormMessage("請確認姓名、聯絡電話與電子信箱皆已填寫。");
+    setFormMessage("請確認姓、名、聯絡電話與電子信箱皆已填寫。");
     return;
   }
 

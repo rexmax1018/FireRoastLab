@@ -66,7 +66,7 @@
 
       <section class="order-flow page-shell" aria-labelledby="order-flow-title">
         <div class="section-heading">
-          <h2 id="order-flow-title">五步驟精密卡位，別讓肚子輸給了猶豫不決</h2>
+          <h2 id="order-flow-title">手刀卡位，別讓肚子輸給了猶豫不決</h2>
           <p>先鎖定出爐日期，再鎖定黃金取餐時段。系統只顯示尚可預購或已額滿，送出預約後會由店家確認，收到確認通知才算正式完成預約。</p>
         </div>
 
@@ -77,8 +77,8 @@
               <h3>確認取貨據點</h3>
             </div>
             <div class="locked-location" aria-label="預設取貨地點">
-              <strong>桃園民生路實驗室自取</strong>
-              <p>創始店｜桃園市桃園區民生路547號（北埔路口）</p>
+              <strong>創始店</strong>
+              <p>桃園市桃園區民生路547號</p>
               <span>僅限自取</span>
             </div>
           </section>
@@ -97,17 +97,27 @@
           <section class="order-step scroll-reveal">
             <div class="step-heading">
               <span>Step 3</span>
-              <h3>確認品項數量</h3>
+              <h3>確認品項數量與金額</h3>
             </div>
-            <div class="quantity-row">
-              <div>
+            <div class="order-item" data-order-item data-unit-price="750">
+              <div class="order-item__copy">
                 <strong>招牌桶烤全雞豪華組合</strong>
-                <p>隨餐附贈：依季節搭配的火候烤時蔬、極精華雞汁、防燙手套與獨門秘製沾粉。這一整套端回家，今晚你的晚餐絕對有最完美的交代。</p>
+                <p>隨餐附贈：依季節搭配的火侯烤時蔬、一次性手套與獨門秘製沾粉。</p>
+              </div>
+              <div class="order-item__meta">
+                <span>單價 NT</span>
+                <strong>750 元</strong>
               </div>
               <div class="quantity-control" aria-label="調整數量">
                 <button type="button" id="decreaseQty" aria-label="減少數量">−</button>
-                <output id="quantityValue" for="decreaseQty increaseQty">1</output>
+                <output id="quantityValue" for="decreaseQty increaseQty">0</output>
                 <button type="button" id="increaseQty" aria-label="增加數量">+</button>
+              </div>
+            </div>
+            <div class="order-total" aria-live="polite">
+              <div class="order-total__amount">
+                <span>合計金額 NT</span>
+                <strong id="subtotalAmountValue">0 元</strong>
               </div>
             </div>
           </section>
@@ -119,8 +129,12 @@
             </div>
             <div class="field-grid">
               <label>
-                <span>姓名</span>
-                <input type="text" name="name" autocomplete="name" required placeholder="請輸入聯絡人姓名" />
+                <span>姓</span>
+                <input type="text" name="familyName" autocomplete="family-name" required placeholder="請輸入姓氏" />
+              </label>
+              <label>
+                <span>名</span>
+                <input type="text" name="givenName" autocomplete="given-name" required placeholder="請輸入名字" />
               </label>
               <label>
                 <span>聯絡電話</span>
@@ -146,7 +160,8 @@
               <div class="order-summary" aria-live="polite">
                 <p id="summaryDate">取餐日期：尚未選擇</p>
                 <p id="summarySlot">取餐時段：尚未選擇</p>
-                <p id="summaryQty">預約數量：1 組</p>
+                <p id="summaryItem">訂購內容：招牌桶烤全雞豪華組合 x 0</p>
+                <p id="summaryTotal">合計金額：0 元</p>
               </div>
               <button class="button button--primary checkout-button" type="submit">送出預約，等待店家確認 ➔</button>
             </div>
@@ -204,6 +219,7 @@
           <section class="terms-modal__section">
             <h3>4. 隱私權與個人資料保護</h3>
             <ul>
+              <li>本表單蒐集姓名、手機號碼、電子信箱、預約品項、取餐日期時段與備註內容，僅用於訂單確認、取餐聯繫、狀態查詢與必要客服處理。</li>
               <li>您於本表單填寫之姓名、手機號碼等資訊，僅供「火侯研究所」作為本次訂單之身分核對、狀態查詢、取餐聯繫及後續服務使用。</li>
               <li>本所承諾盡力妥善保管您的個人資料，絕不外流或挪作其他無關之商業用途。</li>
             </ul>
@@ -227,6 +243,28 @@
         <div class="completion-modal__content">
           <h2 id="completionModalTitle">預約資料已送出</h2>
           <p>店家確認後才算完成預約，請留意電話或 Email 通知。你也可以前往訂單查詢頁，使用手機號碼與預定日期確認最新狀態。</p>
+          <dl class="completion-summary" aria-label="預約摘要">
+            <div class="completion-summary__row">
+              <dt>訂單編號</dt>
+              <dd id="completionOrderId">FRL-000000</dd>
+            </div>
+            <div class="completion-summary__row">
+              <dt>查詢用手機</dt>
+              <dd id="completionPhone">尚未填寫</dd>
+            </div>
+            <div class="completion-summary__row">
+              <dt>預約日期</dt>
+              <dd id="completionDate">尚未選擇</dd>
+            </div>
+            <div class="completion-summary__row">
+              <dt>取餐時段</dt>
+              <dd id="completionSlot">尚未選擇</dd>
+            </div>
+            <div class="completion-summary__row completion-summary__row--status">
+              <dt>目前狀態</dt>
+              <dd id="completionStatus">預約申請已送出，待店家確認</dd>
+            </div>
+          </dl>
         </div>
         <div class="completion-modal__actions">
           <button class="button button--ghost completion-modal__close" id="closeCompletionModal" type="button">
@@ -243,6 +281,23 @@
           <a class="footer-brand" href="index.html">
             <img src="assets/images/logo/logo-horizon-2-trans.png" alt="" />
           </a>
+          <div class="footer-social" aria-label="社群平台">
+            <img src="assets/images/icons/Facebook_Logo_Primary.png" alt="Facebook" />
+            <img src="assets/images/icons/Instagram_Glyph_Gradient.png" alt="Instagram" />
+            <img src="assets/images/icons/threads-logo-white.png" alt="Threads" />
+          </div>
+        </div>
+        <div>
+          <h2>取貨地點</h2>
+          <p>創始店｜桃園市桃園區民生路547號</p>
+          <iframe
+            class="footer-map"
+            title="火侯研究所 Google 地圖"
+            src="https://www.google.com/maps?q=%E6%A1%83%E5%9C%92%E5%B8%82%E6%A1%83%E5%9C%92%E5%8D%80%E6%B0%91%E7%94%9F%E8%B7%AF547%E8%99%9F&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen
+          ></iframe>
         </div>
         <div>
           <h2>快速路徑</h2>
@@ -255,18 +310,6 @@
             <a href="contact.html">聯絡情報</a>
           </nav>
         </div>
-        <div>
-          <h2>取貨地點</h2>
-          <p>創始店｜桃園市桃園區民生路547號（北埔路口）</p>
-          <iframe
-            class="footer-map"
-            title="火侯研究所 Google 地圖"
-            src="https://www.google.com/maps?q=%E6%A1%83%E5%9C%92%E5%B8%82%E6%A1%83%E5%9C%92%E5%8D%80%E6%B0%91%E7%94%9F%E8%B7%AF547%E8%99%9F&output=embed"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            allowfullscreen
-          ></iframe>
-        </div>
       </div>
       <div class="footer-bottom page-shell">
         <p>© 2026 火侯研究所 Fire Roast Lab. All Rights Reserved.</p>
@@ -274,6 +317,6 @@
       </div>
     </footer>
 
-    <script src="js/main.js?v=20260627-complete"></script>
+    <script src="js/main.js?v=20260627-step5-item-total"></script>
   </body>
 </html>
