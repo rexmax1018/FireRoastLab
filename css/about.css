@@ -1,0 +1,23 @@
+.story-layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  padding-bottom: 96px;
+}
+
+.story-block {
+  padding: 30px;
+}
+
+.story-block--large,
+.story-block--wide {
+  grid-column: span 2;
+}
+
+.statement {
+  padding-left: 18px;
+  color: var(--lab-white) !important;
+  font-size: 1.18rem;
+  font-weight: 850;
+  border-left: 4px solid var(--flame-orange);
+}

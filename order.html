@@ -17,6 +17,7 @@
     />
     <link rel="stylesheet" href="css/tailwind.css" />
     <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/order.css" />
   </head>
   <body data-page="order">
     <header class="site-header">
@@ -70,26 +71,55 @@
           <p>先鎖定出爐日期，再鎖定黃金取餐時段。系統只顯示尚可預購或已額滿，送出預約後會由店家確認，收到確認通知才算正式完成預約。</p>
         </div>
 
-        <form class="order-form" id="orderForm">
+        <form class="order-form" id="orderForm" method="post">
           <section class="order-step scroll-reveal">
             <div class="step-heading">
               <span>Step 1</span>
               <h3>確認取貨據點</h3>
             </div>
-            <div class="locked-location" aria-label="預設取貨地點">
-              <strong>創始店</strong>
-              <p>桃園市桃園區民生路547號</p>
-              <span>僅限自取</span>
+            <div class="pickup-grid" id="pickupGrid" aria-label="取貨地點">
+              <button
+                class="pickup-card"
+                type="button"
+                data-pickup-id="founding-store"
+                data-pickup-name="創始店"
+                aria-pressed="false"
+              >
+                <strong>創始店</strong>
+                <span class="pickup-address">桃園市桃園區民生路547號</span>
+                <span class="pickup-status">僅限自取</span>
+              </button>
             </div>
+            <input type="hidden" id="selectedPickupLocation" name="pickupLocation" value="founding-store" />
           </section>
 
           <section class="order-step scroll-reveal">
             <div class="step-heading">
               <span>Step 2</span>
-              <h3>選擇出爐日期與黃金時段</h3>
+              <h3>選擇出爐日期與時段</h3>
             </div>
-            <div class="date-grid" id="dateGrid" aria-label="取餐日期"></div>
-            <div class="slot-grid" id="slotGrid" aria-label="取餐時段"></div>
+            <div class="date-grid" id="dateGrid" aria-label="取餐日期">
+              <button class="date-card is-selected" type="button" aria-pressed="true">
+                <strong>2026/07/01</strong>
+                <span class="date-week">週三 ｜ 晚間開爐</span>
+                <span class="date-status">可選日期</span>
+              </button>
+              <button class="date-card" type="button" aria-pressed="false">
+                <strong>2026/07/04</strong>
+                <span class="date-week">週六 ｜ 整天開爐</span>
+                <span class="date-status">可選日期</span>
+              </button>
+            </div>
+            <div class="slot-grid" id="slotGrid" aria-label="取餐時段">
+              <button class="slot-card is-selected" type="button" aria-pressed="true">
+                <strong>18:00 ~ 21:00</strong>
+                <span class="slot-status">尚可預購</span>
+              </button>
+              <button class="slot-card" type="button" aria-pressed="false">
+                <strong>19:00 ~ 20:00</strong>
+                <span class="slot-status">尚可預購</span>
+              </button>
+            </div>
             <input type="hidden" id="selectedDate" name="selectedDate" />
             <input type="hidden" id="selectedSlot" name="selectedSlot" />
           </section>
@@ -99,19 +129,29 @@
               <span>Step 3</span>
               <h3>確認品項數量與金額</h3>
             </div>
-            <div class="order-item" data-order-item data-unit-price="750">
-              <div class="order-item__copy">
-                <strong>招牌桶烤全雞豪華組合</strong>
-                <p>隨餐附贈：依季節搭配的火侯烤時蔬、一次性手套與獨門秘製沾粉。</p>
-              </div>
-              <div class="order-item__meta">
-                <span>單價 NT</span>
-                <strong>750 元</strong>
-              </div>
-              <div class="quantity-control" aria-label="調整數量">
-                <button type="button" id="decreaseQty" aria-label="減少數量">−</button>
-                <output id="quantityValue" for="decreaseQty increaseQty">0</output>
-                <button type="button" id="increaseQty" aria-label="增加數量">+</button>
+            <div class="order-item-list">
+              <div
+                class="order-item"
+                data-order-item
+                data-item-id="signature-barrel-roast-chicken-set"
+                data-item-name="招牌桶烤全雞豪華組合"
+                data-unit-price="750"
+              >
+                <input type="hidden" name="items[0][id]" value="signature-barrel-roast-chicken-set" />
+                <input type="hidden" name="items[0][quantity]" value="0" data-quantity-input />
+                <div class="order-item__copy">
+                  <strong>招牌桶烤全雞豪華組合</strong>
+                  <p>隨餐附贈：依季節搭配的火侯烤時蔬、一次性手套與獨門秘製沾粉。</p>
+                </div>
+                <div class="order-item__meta">
+                  <span>單價 NT</span>
+                  <strong>750 元</strong>
+                </div>
+                <div class="quantity-control" aria-label="調整招牌桶烤全雞豪華組合數量">
+                  <button type="button" aria-label="減少數量" data-quantity-action="decrease">−</button>
+                  <output data-quantity-value>0</output>
+                  <button type="button" aria-label="增加數量" data-quantity-action="increase">+</button>
+                </div>
               </div>
             </div>
             <div class="order-total" aria-live="polite">
@@ -160,10 +200,10 @@
               <div class="order-summary" aria-live="polite">
                 <p id="summaryDate">取餐日期：尚未選擇</p>
                 <p id="summarySlot">取餐時段：尚未選擇</p>
-                <p id="summaryItem">訂購內容：招牌桶烤全雞豪華組合 x 0</p>
+                <div class="summary-items" id="summaryItems">訂購內容：尚未選擇品項</div>
                 <p id="summaryTotal">合計金額：0 元</p>
               </div>
-              <button class="button button--primary checkout-button" type="submit">送出預約，等待店家確認 ➔</button>
+              <button class="button button--primary checkout-button" type="submit">送出預約</button>
             </div>
             <div class="terms-consent">
               <input type="checkbox" id="termsAgreement" name="termsAgreement" required />
@@ -260,6 +300,10 @@
               <dt>取餐時段</dt>
               <dd id="completionSlot">尚未選擇</dd>
             </div>
+            <div class="completion-summary__row">
+              <dt>訂購品項</dt>
+              <dd id="completionItems">尚未選擇品項</dd>
+            </div>
             <div class="completion-summary__row completion-summary__row--status">
               <dt>目前狀態</dt>
               <dd id="completionStatus">預約申請已送出，待店家確認</dd>
@@ -317,6 +361,7 @@
       </div>
     </footer>
 
-    <script src="js/main.js?v=20260627-step5-item-total"></script>
+    <script src="js/main.js?v=20260627-page-assets"></script>
+    <script src="js/order.js?v=20260627-page-assets"></script>
   </body>
 </html>

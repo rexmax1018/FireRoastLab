@@ -1,0 +1,118 @@
+.hero-section {
+  position: relative;
+  isolation: isolate;
+  min-height: min(820px, calc(100svh - 72px));
+  display: grid;
+  align-items: center;
+  padding: 28px 0 40px;
+  overflow: hidden;
+  contain: paint;
+  border-bottom: 1px solid var(--line);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(440px, 1.08fr);
+  align-items: center;
+  gap: 0;
+  position: relative;
+  z-index: 4;
+}
+
+.hero-copy,
+.hero-actions {
+  position: relative;
+  z-index: 7;
+}
+
+.hero-copy h1 {
+  max-width: 680px;
+  margin: 0;
+  font-size: clamp(4rem, 6vw, 5.2rem);
+  line-height: 0.98;
+  font-weight: 950;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.hero-subtitle {
+  margin-top: 12px !important;
+  color: var(--flame-orange) !important;
+  font-size: clamp(1.15rem, 2vw, 1.8rem) !important;
+  font-weight: 950;
+  letter-spacing: 0.24em;
+  line-height: 1.25 !important;
+  text-transform: uppercase;
+}
+
+.hero-chicken-wrap {
+  display: grid;
+  place-items: center;
+  width: min(115%, 760px);
+  height: min(108%, 700px);
+  position: relative;
+  z-index: 3;
+}
+
+.hero-chicken-img {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+  object-position: center;
+}
+
+.hero-media {
+  position: relative;
+  z-index: 1;
+  min-height: clamp(560px, 58vw, 680px);
+  display: grid;
+  place-items: center;
+  align-self: stretch;
+  justify-self: end;
+  width: min(56vw, 700px);
+  margin-left: 0;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  overflow: visible;
+}
+
+.feature-card {
+  min-height: 300px;
+  padding: 24px 28px 28px;
+  overflow: visible;
+}
+
+.feature-card img {
+  position: relative;
+  z-index: 1;
+  width: min(112%, 380px);
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center bottom;
+  margin: -122px auto -56px;
+  filter: drop-shadow(0 16px 24px rgba(0, 0, 0, 0.34));
+  pointer-events: none;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.product-card {
+  min-height: 320px;
+  display: grid;
+  grid-template-columns: minmax(180px, 0.92fr) minmax(0, 1.08fr);
+  align-items: center;
+  overflow: hidden;
+}

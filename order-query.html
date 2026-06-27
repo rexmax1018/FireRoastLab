@@ -17,6 +17,7 @@
     />
     <link rel="stylesheet" href="css/tailwind.css" />
     <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/order-query.css" />
   </head>
   <body data-page="query">
     <header class="site-header">
@@ -99,26 +100,9 @@
         </article>
 
         <article class="lookup-result scroll-reveal" id="lookupResult" aria-live="polite" hidden>
-          <span class="lookup-result__eyebrow">訂單編號:</span>
-          <h2>店家已確認</h2>
-          <dl class="lookup-result-list">
-            <div class="lookup-result-row">
-              <dt>訂購人</dt>
-              <dd id="lookupCustomer">陳先生 / 小姐</dd>
-            </div>
-            <div class="lookup-result-row">
-              <dt>取餐時間</dt>
-              <dd id="lookupPickupTime">10月25日 (五) 18:00</dd>
-            </div>
-            <div class="lookup-result-row">
-              <dt>訂購內容</dt>
-              <dd id="lookupItems">招牌炭烤全雞 x 1</dd>
-            </div>
-            <div class="lookup-result-row lookup-result-row--status">
-              <dt>目前狀態</dt>
-              <dd id="lookupStatus">店家已確認，期待您的光臨！</dd>
-            </div>
-          </dl>
+          <span class="lookup-result__eyebrow">訂單查詢結果</span>
+          <h2 id="lookupResultTitle">找到 0 筆訂單</h2>
+          <div class="lookup-result-list" id="lookupResultList"></div>
         </article>
       </section>
     </main>
@@ -165,6 +149,7 @@
       </div>
     </footer>
 
-    <script src="js/main.js?v=20260627-step5-item-total"></script>
+    <script src="js/main.js?v=20260627-page-assets"></script>
+    <script src="js/order-query.js?v=20260627-page-assets"></script>
   </body>
 </html>

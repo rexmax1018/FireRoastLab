@@ -1,0 +1,52 @@
+.menu-combo {
+  display: grid;
+  gap: 22px;
+  padding-bottom: 56px;
+}
+
+.menu-combo__actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 4px;
+}
+
+.menu-combo__actions .button {
+  width: max-content;
+  min-width: 220px;
+  padding-inline: 1.65rem;
+  white-space: nowrap;
+}
+
+.menu-item {
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr);
+  align-items: center;
+  gap: 26px;
+  padding: 28px;
+}
+
+.menu-item img {
+  width: 100%;
+  max-height: 260px;
+  object-fit: contain;
+}
+
+.recipe-section {
+  padding-bottom: 96px;
+}
+
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.recipe-step {
+  min-height: 300px;
+  padding: 28px;
+}
+
+.recipe-step .hint {
+  color: var(--ember-gold);
+  font-weight: 800;
+}
