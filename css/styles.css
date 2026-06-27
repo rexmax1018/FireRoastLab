@@ -230,25 +230,72 @@ textarea {
   padding: 0 0 18px;
 }
 
+.mobile-nav.is-open,
+body.mobile-nav-open .mobile-nav {
+  position: fixed;
+  top: 78px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 49;
+  display: grid;
+  gap: 10px;
+  width: 100%;
+  min-height: calc(100svh - 78px);
+  margin: 0;
+  padding: 22px max(16px, calc((100vw - var(--max-width)) / 2)) max(28px, env(safe-area-inset-bottom));
+  align-content: start;
+  background: rgba(0, 0, 0, 0.42);
+  border-top: 1px solid rgba(255, 63, 0, 0.28);
+  box-shadow: inset 0 1px 0 rgba(255, 170, 0, 0.08), 0 24px 70px rgba(0, 0, 0, 0.56);
+  overflow-y: auto;
+  backdrop-filter: blur(26px) saturate(150%);
+  -webkit-backdrop-filter: blur(26px) saturate(150%);
+}
+
+.mobile-nav.is-open::before,
+body.mobile-nav-open .mobile-nav::before {
+  content: "";
+  position: fixed;
+  inset: 78px 0 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(13, 13, 13, 0.9), rgba(13, 13, 13, 0.76));
+  backdrop-filter: blur(30px) saturate(155%);
+  -webkit-backdrop-filter: blur(30px) saturate(155%);
+}
+
 .mobile-nav__link {
+  position: relative;
+  z-index: 2;
   display: flex;
-  min-height: 48px;
+  width: min(100%, 520px);
+  min-height: 56px;
   align-items: center;
-  padding: 0 14px;
-  color: var(--muted);
+  margin-inline: auto;
+  padding: 0 18px;
+  color: var(--lab-white);
   font-weight: 850;
   border-radius: 8px;
+  background: rgba(13, 13, 13, 0.86);
+  border: 1px solid rgba(245, 245, 245, 0.14);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.28);
 }
 
 .mobile-nav__link--active {
   color: var(--ember-gold);
-  background: rgba(255, 170, 0, 0.08);
+  background: rgba(255, 170, 0, 0.14);
+  border-color: rgba(255, 170, 0, 0.38);
 }
 
 .mobile-nav__link--cta {
   justify-content: center;
   color: var(--lab-white);
   background: var(--flame-orange);
+}
+
+body.mobile-nav-open {
+  overflow: hidden;
 }
 
 .hero-section {
@@ -1643,11 +1690,6 @@ body.completion-modal-open {
     display: grid;
   }
 
-  .mobile-nav.is-open {
-    display: grid;
-    gap: 8px;
-  }
-
   .hero-copy h1 {
     font-size: clamp(3.4rem, 6vw, 4rem);
   }
@@ -1805,6 +1847,17 @@ body.completion-modal-open {
 @media (max-width: 520px) {
   .site-nav {
     min-height: 70px;
+  }
+
+  .mobile-nav.is-open,
+  body.mobile-nav-open .mobile-nav {
+    top: 70px;
+    min-height: calc(100svh - 70px);
+  }
+
+  .mobile-nav.is-open::before,
+  body.mobile-nav-open .mobile-nav::before {
+    inset: 70px 0 0;
   }
 
   .brand-link img,

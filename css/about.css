@@ -21,3 +21,20 @@
   font-weight: 850;
   border-left: 4px solid var(--flame-orange);
 }
+
+@media (max-width: 860px) {
+  .story-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .story-block--large,
+  .story-block--wide {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .story-block {
+    padding: 22px;
+  }
+}

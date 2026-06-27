@@ -87,3 +87,26 @@
 .lookup-message {
   color: var(--ember-gold);
 }
+
+@media (max-width: 860px) {
+  .lookup-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .lookup-panel,
+  .lookup-result {
+    padding: 22px;
+  }
+
+  .lookup-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .lookup-result-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}

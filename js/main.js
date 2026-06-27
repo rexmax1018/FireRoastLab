@@ -22,19 +22,58 @@ const initializeMobileNavigation = () => {
     return;
   }
 
+  if (mobileMenu.parentElement !== document.body) {
+    document.body.append(mobileMenu);
+  }
+
   const closeMenu = () => {
-    mobileMenu.hidden = true;
     mobileMenu.classList.remove("is-open");
+    mobileMenu.hidden = true;
+    mobileMenu.setAttribute("hidden", "");
+    document.body.classList.remove("mobile-nav-open");
     menuButton.setAttribute("aria-expanded", "false");
     menuButton.setAttribute("aria-label", "開啟選單");
   };
 
-  menuButton.addEventListener("click", () => {
-    const isOpen = mobileMenu.classList.contains("is-open");
-    mobileMenu.hidden = isOpen;
-    mobileMenu.classList.toggle("is-open", !isOpen);
-    menuButton.setAttribute("aria-expanded", String(!isOpen));
-    menuButton.setAttribute("aria-label", isOpen ? "開啟選單" : "關閉選單");
+  const openMenu = () => {
+    mobileMenu.hidden = false;
+    mobileMenu.removeAttribute("hidden");
+    mobileMenu.classList.add("is-open");
+    document.body.classList.add("mobile-nav-open");
+    menuButton.setAttribute("aria-expanded", "true");
+    menuButton.setAttribute("aria-label", "關閉選單");
+  };
+
+  menuButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const isOpen = menuButton.getAttribute("aria-expanded") === "true";
+
+    if (isOpen) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+
+  document.addEventListener("click", (event) => {
+    const isOpen = menuButton.getAttribute("aria-expanded") === "true";
+    const target = event.target;
+
+    if (!isOpen || !(target instanceof Node)) {
+      return;
+    }
+
+    if (!mobileMenu.contains(target) && !menuButton.contains(target)) {
+      closeMenu();
+    }
+  });
+
+  mobileMenu.addEventListener("click", (event) => {
+    if (event.target === mobileMenu) {
+      closeMenu();
+    }
   });
 
   mobileMenu.querySelectorAll("a").forEach((link) => {

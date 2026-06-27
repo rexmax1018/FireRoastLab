@@ -50,3 +50,31 @@
   color: var(--ember-gold);
   font-weight: 800;
 }
+
+@media (max-width: 1100px) {
+  .recipe-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 860px) {
+  .menu-item {
+    grid-template-columns: 1fr;
+  }
+
+  .menu-combo__actions {
+    justify-content: stretch;
+  }
+
+  .menu-combo__actions .button {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .menu-item,
+  .recipe-step {
+    padding: 22px;
+  }
+}
