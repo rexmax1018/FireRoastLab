@@ -129,25 +129,48 @@
               <span>Step 3</span>
               <h3>確認品項數量與金額</h3>
             </div>
-            <div class="order-item-list">
+            <div class="order-item-list order-item-list--cards">
               <div
                 class="order-item"
                 data-order-item
                 data-item-id="signature-barrel-roast-chicken-set"
-                data-item-name="招牌桶烤全雞豪華組合"
+                data-item-name="招牌桶烤全雞套餐"
                 data-unit-price="750"
               >
                 <input type="hidden" name="items[0][id]" value="signature-barrel-roast-chicken-set" />
                 <input type="hidden" name="items[0][quantity]" value="0" data-quantity-input />
                 <div class="order-item__copy">
-                  <strong>招牌桶烤全雞豪華組合</strong>
-                  <p>隨餐附贈：依季節搭配的火侯烤時蔬、一次性手套與獨門秘製沾粉。</p>
+                  <strong>招牌桶烤全雞套餐</strong>
+                  <p>2.5 台斤以上仿土雞｜含火侯雞汁時蔬</p>
                 </div>
                 <div class="order-item__meta">
                   <span>單價 NT</span>
                   <strong>750 元</strong>
                 </div>
-                <div class="quantity-control" aria-label="調整招牌桶烤全雞豪華組合數量">
+                <div class="quantity-control" aria-label="調整招牌桶烤全雞套餐數量">
+                  <button type="button" aria-label="減少數量" data-quantity-action="decrease">−</button>
+                  <output data-quantity-value>0</output>
+                  <button type="button" aria-label="增加數量" data-quantity-action="increase">+</button>
+                </div>
+              </div>
+              <div
+                class="order-item"
+                data-order-item
+                data-item-id="king-barrel-roast-chicken-set"
+                data-item-name="火侯霸王桶烤全雞套餐"
+                data-unit-price="1200"
+              >
+                <input type="hidden" name="items[1][id]" value="king-barrel-roast-chicken-set" />
+                <input type="hidden" name="items[1][quantity]" value="0" data-quantity-input />
+                <div class="order-item__copy">
+                  <strong>火侯霸王桶烤全雞套餐</strong>
+                  <p>5 台斤仿土雞｜含豪華版火侯雞汁時蔬</p>
+                </div>
+                <div class="order-item__meta">
+                  <span>單價 NT</span>
+                  <strong>1,200 元</strong>
+                </div>
+                <div class="quantity-control" aria-label="調整火侯霸王桶烤全雞套餐數量">
                   <button type="button" aria-label="減少數量" data-quantity-action="decrease">−</button>
                   <output data-quantity-value>0</output>
                   <button type="button" aria-label="增加數量" data-quantity-action="increase">+</button>

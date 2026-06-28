@@ -67,6 +67,10 @@
   gap: 14px;
 }
 
+.order-item-list--cards {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .pickup-grid,
 .date-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -189,8 +193,17 @@
   background: rgba(255, 255, 255, 0.035);
 }
 
+.order-item-list--cards .order-item {
+  align-items: stretch;
+  flex-direction: column;
+}
+
 .order-item__copy {
   min-width: 0;
+}
+
+.order-item__copy p {
+  margin-top: 8px;
 }
 
 .order-item__meta {
@@ -198,6 +211,13 @@
   padding: 0;
   border: 0;
   background: transparent;
+}
+
+.order-item-list--cards .order-item__meta {
+  flex: none;
+  width: 100%;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
 }
 
 .quantity-control {
@@ -412,6 +432,10 @@ body.completion-modal-open {
 }
 
 @media (max-width: 860px) {
+  .order-item-list--cards {
+    grid-template-columns: 1fr;
+  }
+
   .order-item,
   .checkout-row {
     align-items: stretch;

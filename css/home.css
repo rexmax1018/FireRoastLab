@@ -128,6 +128,108 @@
   overflow: hidden;
 }
 
+.home-products-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.92fr) minmax(0, 1.08fr);
+  align-items: center;
+  gap: clamp(28px, 5vw, 64px);
+  margin-top: 36px;
+}
+
+.home-products-visual {
+  margin: 0;
+}
+
+.home-products-visual .image-placeholder {
+  display: grid;
+  place-items: center;
+  min-height: 360px;
+  overflow: visible;
+}
+
+.home-products-visual img {
+  width: min(132%, 560px);
+  max-width: none;
+  height: auto;
+  margin-top: -72px;
+  filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.36));
+}
+
+.home-products-copy {
+  min-width: 0;
+}
+
+.home-products-copy > p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.86;
+}
+
+.home-products-copy > p + p {
+  margin-top: 14px;
+}
+
+.home-products-copy strong {
+  color: var(--lab-white);
+  font-weight: 950;
+}
+
+.home-products-points {
+  margin-top: 28px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.home-products-points h3 {
+  margin: 0 0 16px;
+  color: var(--ember-gold);
+  font-size: 1.08rem;
+  line-height: 1.35;
+  font-weight: 950;
+}
+
+.mini-card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.mini-card {
+  display: flex;
+  gap: 12px;
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.mini-card__icon {
+  flex: 0 0 auto;
+  color: var(--ember-gold);
+  font-size: 0.82rem;
+  font-weight: 950;
+  line-height: 1.4;
+}
+
+.mini-card__title {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.35;
+  font-weight: 950;
+}
+
+.mini-card__title--accent {
+  color: var(--ember-gold);
+}
+
+.mini-card p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
 @media (max-width: 860px) {
   .hero-grid {
     display: flex;
@@ -200,6 +302,15 @@
     min-height: auto;
   }
 
+  .home-products-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .home-products-visual img {
+    width: min(108vw, 440px);
+    margin-top: -46px;
+  }
+
   .product-card__copy,
   .product-card img {
     order: initial;
@@ -226,6 +337,24 @@
     min-width: 0;
     max-width: 100%;
     white-space: nowrap;
+  }
+
+  .home-products-layout {
+    gap: 24px;
+    margin-top: 28px;
+  }
+
+  .home-products-visual .image-placeholder {
+    min-height: 260px;
+  }
+
+  .home-products-visual img {
+    width: min(108vw, 380px);
+    margin-top: -32px;
+  }
+
+  .mini-card {
+    padding: 14px;
   }
 
   .hero-copy h1 {

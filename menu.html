@@ -57,7 +57,7 @@
       <section class="page-hero page-shell">
         <div>
           <h1>研究菜單</h1>
-          <p>主烤全雞、當季時蔬與精油雞汁皆孕育自同一爐火。這不只是套餐，而是一套保證被朋友追問「你哪裡搶到的」的終極晚餐方案。</p>
+          <p>主烤全雞、當季時蔬與精油雞汁皆孕育自同一爐火。所有品項皆為套餐形式，完整內容、份量與價格都在這裡一次看清楚。</p>
         </div>
         <picture class="page-hero__media">
           <source media="(max-width: 520px)" srcset="assets/images/product/menu-hero-mobile.png" />
@@ -66,29 +66,54 @@
       </section>
 
       <section class="menu-combo page-shell" aria-label="菜單品項">
-        <article class="menu-item scroll-reveal">
-          <figure class="product-image-block">
-            <img src="assets/images/product/product-roast-chicken.png" alt="招牌桶烤全雞" />
-            <figcaption class="product-image-note">圖片僅供參考</figcaption>
-          </figure>
-          <div>
-            <h2>招牌桶烤全雞</h2>
-            <p class="spec-label">適合 2-4 人分享 ｜ 附一次性手套、獨門秘製沾粉</p>
-            <p>特選全雞以科學醃料入味，鎖入雙層鋼桶炙烤。金黃焦脆的外皮下裹著洶湧的雞汁。隨餐附贈依季節搭配的火侯烤時蔬。手撕那刻，就是美味盛宴的開始。</p>
-          </div>
-        </article>
+        <div class="menu-card-grid">
+          <article class="menu-package-card scroll-reveal">
+            <figure class="product-image-block">
+              <img src="assets/images/product/product-roast-chicken.png" alt="招牌桶烤全雞套餐" />
+              <figcaption class="product-image-note">圖片僅供參考</figcaption>
+            </figure>
+            <div class="menu-package-card__body">
+              <div class="menu-package-card__title-row">
+                <h2>招牌桶烤全雞套餐</h2>
+                <strong class="menu-package-card__price">NT$750</strong>
+              </div>
+              <p class="spec-label">適合 2-4 人分享</p>
+              <p>特選仿土雞以科學醃料入味，鎖入雙層鋼桶炙烤。金黃焦脆的外皮下裹著洶湧雞汁，搭配依季節登場的火侯雞汁時蔬。</p>
+              <ul class="menu-package-card__contents">
+                <li>火侯雞汁時蔬</li>
+                <li>一次性手套</li>
+                <li>獨門秘製沾粉</li>
+              </ul>
+              <div class="menu-package-card__badges" aria-label="套餐標籤">
+                <span>套餐限定</span>
+              </div>
+            </div>
+          </article>
 
-        <article class="menu-item scroll-reveal">
-          <figure class="product-image-block">
-            <img src="assets/images/product/product-vegetables.png" alt="火侯雞汁時蔬" />
-            <figcaption class="product-image-note">圖片僅供參考</figcaption>
-          </figure>
-          <div>
-            <h2>火侯雞汁時蔬</h2>
-            <p class="spec-label">適合 2-4 人分享 ｜ 解鎖三種美味實驗</p>
-            <p>接住桶烤過程中滴落的精華雞汁與炭香油花，時蔬依季節與當日採買挑選，讓清甜、煙燻香與黃金湯汁收乾在盤底。它不是配角，而是搶佔所有人視線的目光小偷。</p>
-          </div>
-        </article>
+          <article class="menu-package-card menu-package-card--featured scroll-reveal">
+            <figure class="product-image-block">
+              <img src="assets/images/product/product-roast-chicken.png" alt="火侯霸王桶烤全雞套餐" />
+              <figcaption class="product-image-note">圖片僅供參考</figcaption>
+            </figure>
+            <div class="menu-package-card__body">
+              <div class="menu-package-card__title-row">
+                <h2>火侯霸王桶烤全雞套餐</h2>
+                <strong class="menu-package-card__price">NT$1,200</strong>
+              </div>
+              <p class="spec-label">適合 5-8 人分享</p>
+              <p>大份量聚餐首選，整隻 5 台斤仿土雞火力全開，搭配豪華版火侯雞汁時蔬，讓更多人都吃得到吸飽雞汁的精華配菜。</p>
+              <ul class="menu-package-card__contents">
+                <li>豪華版火侯雞汁時蔬</li>
+                <li>一次性手套</li>
+                <li>獨門秘製沾粉</li>
+              </ul>
+              <div class="menu-package-card__badges" aria-label="套餐標籤">
+                <span>豪華版時蔬</span>
+                <span>套餐限定</span>
+              </div>
+            </div>
+          </article>
+        </div>
         <div class="menu-combo__actions">
           <a class="button button--primary" href="order.html">立即搶訂卡位</a>
         </div>
@@ -97,8 +122,8 @@
       <section class="recipe-section page-shell" aria-labelledby="recipe-title">
         <div class="section-heading">
           <div>
-            <h2 id="recipe-title">火侯雞汁時蔬三種美味實驗</h2>
-            <p>每次開爐都會依季節調整時蔬組合，同一盤當令風味，可以從清爽配菜，晉升為拌麵主角，最後蛻變為完美湯底。吃法毫無難度，難的是你如何克制一開始就不小心吃光它的衝動。</p>
+            <h2 id="recipe-title">套餐亮點｜火侯雞汁時蔬三種美味實驗</h2>
+            <p>火侯雞汁時蔬為套餐內容，不單獨零售。每次開爐都會依季節調整時蔬組合，同一盤當令風味，可以從清爽配菜，晉升為拌麵主角，最後蛻變為完美湯底。</p>
           </div>
         </div>
 
