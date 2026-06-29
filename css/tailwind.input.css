@@ -1,4 +1,0 @@
-/* Tailwind 本機編譯入口：不要在 HTML 使用 CDN，請透過 npm run build:css 產生 css/tailwind.css。 */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
