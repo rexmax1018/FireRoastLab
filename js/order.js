@@ -553,7 +553,7 @@ orderForm?.addEventListener("submit", (event) => {
   }
 
   if (termsAgreement && !termsAgreement.checked) {
-    termsAgreement.setCustomValidity("請先勾選同意火侯研究所預訂須知與個資聲明。");
+    termsAgreement.setCustomValidity("請先勾選同意火候研究所預訂須知與個資聲明。");
     orderForm.reportValidity();
     setFormMessage("請先勾選同意預訂須知與個資聲明。");
     termsAgreement.focus();
