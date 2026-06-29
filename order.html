@@ -71,7 +71,7 @@
           <p>先鎖定出爐日期，再鎖定黃金取餐時段。系統只顯示尚可預購或已額滿，送出預約後會由店家確認，收到確認通知才算正式完成預約。</p>
         </div>
 
-        <form class="order-form" id="orderForm" method="post">
+        <form class="order-form" id="orderForm" method="post" novalidate>
           <section class="order-step scroll-reveal">
             <div class="step-heading">
               <span>Step 1</span>
@@ -98,7 +98,7 @@
               <span>Step 2</span>
               <h3>選擇出爐日期與時段</h3>
             </div>
-            <div class="date-grid" id="dateGrid" aria-label="取餐日期">
+            <div class="date-grid" id="dateGrid" aria-label="取餐日期" aria-describedby="scheduleError">
               <button class="date-card is-selected" type="button" aria-pressed="true">
                 <strong>2026/07/01</strong>
                 <span class="date-week">週三 ｜ 晚間開爐</span>
@@ -110,7 +110,7 @@
                 <span class="date-status">可選日期</span>
               </button>
             </div>
-            <div class="slot-grid" id="slotGrid" aria-label="取餐時段">
+            <div class="slot-grid" id="slotGrid" aria-label="取餐時段" aria-describedby="scheduleError">
               <button class="slot-card is-selected" type="button" aria-pressed="true">
                 <strong>18:00 ~ 21:00</strong>
                 <span class="slot-status">尚可預購</span>
@@ -120,6 +120,7 @@
                 <span class="slot-status">尚可預購</span>
               </button>
             </div>
+            <p class="field-error field-error--step" id="scheduleError" aria-live="polite"></p>
             <input type="hidden" id="selectedDate" name="selectedDate" />
             <input type="hidden" id="selectedSlot" name="selectedSlot" />
           </section>
@@ -177,6 +178,7 @@
                 </div>
               </div>
             </div>
+            <p class="field-error field-error--step" id="orderItemsError" aria-live="polite"></p>
             <div class="order-total" aria-live="polite">
               <div class="order-total__amount">
                 <span>合計金額 NT</span>
@@ -188,28 +190,69 @@
           <section class="order-step scroll-reveal">
             <div class="step-heading">
               <span>Step 4</span>
-              <h3>聯絡人基本資料</h3>
+              <h3>聯絡人資料</h3>
             </div>
             <div class="field-grid">
               <label>
                 <span>姓</span>
-                <input type="text" name="familyName" autocomplete="family-name" required placeholder="請輸入姓氏" />
+                <input
+                  type="text"
+                  name="familyName"
+                  autocomplete="family-name"
+                  required
+                  placeholder="請輸入姓氏"
+                  aria-describedby="familyNameError"
+                />
+                <p class="field-error" id="familyNameError" data-error-for="familyName" aria-live="polite"></p>
               </label>
               <label>
                 <span>名</span>
-                <input type="text" name="givenName" autocomplete="given-name" required placeholder="請輸入名字" />
+                <input
+                  type="text"
+                  name="givenName"
+                  autocomplete="given-name"
+                  required
+                  placeholder="請輸入名字"
+                  aria-describedby="givenNameError"
+                />
+                <p class="field-error" id="givenNameError" data-error-for="givenName" aria-live="polite"></p>
               </label>
               <label>
                 <span>聯絡電話</span>
-                <input type="tel" name="phone" autocomplete="tel" required placeholder="請輸入行動電話號碼" />
+                <input
+                  type="tel"
+                  name="phone"
+                  inputmode="tel"
+                  autocomplete="tel"
+                  required
+                  pattern="09[0-9]{8}"
+                  placeholder="請輸入行動電話號碼"
+                  aria-describedby="phoneError"
+                />
+                <p class="field-error" id="phoneError" data-error-for="phone" aria-live="polite"></p>
               </label>
               <label>
                 <span>電子信箱</span>
-                <input type="email" name="email" autocomplete="email" required placeholder="請輸入 Email 以接收確認通知" />
+                <input
+                  type="email"
+                  name="email"
+                  autocomplete="email"
+                  required
+                  placeholder="請輸入 Email 以接收確認通知"
+                  aria-describedby="emailError"
+                />
+                <p class="field-error" id="emailError" data-error-for="email" aria-live="polite"></p>
               </label>
               <label class="field-grid__full">
                 <span>職人交辦特別備註</span>
-                <textarea name="note" rows="4" placeholder="如需烤色偏深、焦香一點，或有取餐相關備註可填寫於此。本店暫不提供調味、份量、配菜等客製化服務。"></textarea>
+                <textarea
+                  name="note"
+                  rows="4"
+                  maxlength="200"
+                  placeholder="如需烤色偏深、焦香一點，或有取餐相關備註可填寫於此。本店暫不提供調味、份量、配菜等客製化服務。"
+                  aria-describedby="noteError"
+                ></textarea>
+                <p class="field-error" id="noteError" data-error-for="note" aria-live="polite"></p>
               </label>
             </div>
           </section>
@@ -226,32 +269,50 @@
                 <div class="summary-items" id="summaryItems">訂購內容：尚未選擇品項</div>
                 <p id="summaryTotal">合計金額：0 元</p>
               </div>
-              <button class="button button--primary checkout-button" type="submit">送出預約</button>
             </div>
             <div class="terms-consent">
-              <input type="checkbox" id="termsAgreement" name="termsAgreement" required />
+              <input
+              type="checkbox"
+              id="termsAgreement"
+              name="termsAgreement"
+              required
+              aria-describedby="termsAgreementError"
+              disabled
+              />
               <div>
                 <label for="termsAgreement">我已詳閱並同意</label>
                 <button
-                  class="terms-link"
-                  id="openTermsModal"
-                  type="button"
-                  aria-haspopup="dialog"
-                  aria-controls="termsModal"
+                class="terms-link"
+                id="openTermsModal"
+                type="button"
+                aria-haspopup="dialog"
+                aria-controls="termsModal"
                 >
-                  「火候研究所預訂須知與個資聲明」
-                </button>
-              </div>
+                「火候研究所預訂須知與個資聲明」
+              </button>
             </div>
-            <p class="form-message" id="formMessage" role="status" aria-live="polite"></p>
-          </section>
+          </div>
+          <p class="field-error field-error--terms" id="termsAgreementError" aria-live="polite"></p>
+          <p class="form-message" id="formMessage" role="status" aria-live="polite"></p>
+          <div class="checkout-actions">
+            <button class="button button--primary checkout-button" type="submit" disabled>送出預約</button>
+          </div>
+        </section>
         </form>
       </section>
     </main>
 
-    <div class="terms-modal" id="termsModal" role="dialog" aria-modal="true" aria-labelledby="termsModalTitle" hidden>
+    <div
+      class="terms-modal"
+      id="termsModal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="termsModalTitle"
+      aria-describedby="termsScrollHint"
+      hidden
+    >
       <section class="terms-modal__panel" tabindex="-1">
-        <div class="terms-modal__content">
+        <div class="terms-modal__content" id="termsModalContent" tabindex="0">
           <h2 id="termsModalTitle">火候研究所預訂須知與個資聲明</h2>
 
           <section class="terms-modal__section">
@@ -289,7 +350,12 @@
           </section>
         </div>
         <div class="terms-modal__actions">
-          <button class="button button--primary terms-modal__close" id="closeTermsModal" type="button">關閉</button>
+          <p class="terms-modal__hint" id="termsScrollHint" role="status" aria-live="polite">
+            請將預訂須知捲到底後即可關閉。
+          </p>
+          <button class="button button--primary terms-modal__close" id="closeTermsModal" type="button" disabled>
+            關閉
+          </button>
         </div>
       </section>
     </div>

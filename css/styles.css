@@ -1232,6 +1232,40 @@ textarea:focus {
   background: rgba(255, 255, 255, 0.06);
 }
 
+input[aria-invalid="true"],
+textarea[aria-invalid="true"] {
+  border-color: #ff2f2f;
+  background: rgba(255, 47, 47, 0.1);
+  box-shadow: 0 0 0 1px rgba(255, 47, 47, 0.32);
+}
+
+input[aria-invalid="true"]:focus,
+textarea[aria-invalid="true"]:focus {
+  border-color: #ff2f2f;
+  box-shadow: 0 0 0 4px rgba(255, 47, 47, 0.24);
+}
+
+.field-error {
+  margin: 8px 0 0;
+  padding: 0;
+  color: #ff0000 !important;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  font-size: 0.88rem;
+  font-weight: 950;
+  line-height: 1.45;
+}
+
+.field-error:empty {
+  display: none;
+}
+
+.field-error--step,
+.field-error--terms {
+  margin-top: 12px;
+}
+
 .order-summary {
   color: var(--muted);
 }
@@ -1266,6 +1300,11 @@ textarea:focus {
   border: 1px solid rgba(255, 170, 0, 0.34);
   border-radius: 8px;
   background: rgba(255, 170, 0, 0.07);
+}
+
+.terms-consent.is-invalid {
+  border-color: rgba(255, 47, 47, 0.78);
+  background: rgba(255, 47, 47, 0.1);
 }
 
 .terms-consent input[type="checkbox"] {

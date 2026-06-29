@@ -11,11 +11,14 @@ const summaryTotal = document.querySelector("#summaryTotal");
 const orderItems = Array.from(document.querySelectorAll("[data-order-item]"));
 const subtotalAmountValue = document.querySelector("#subtotalAmountValue");
 const orderForm = document.querySelector("#orderForm");
+const checkoutButton = document.querySelector(".checkout-button");
 const formMessage = document.querySelector("#formMessage");
 const termsAgreement = document.querySelector("#termsAgreement");
 const termsModal = document.querySelector("#termsModal");
+const termsModalContent = document.querySelector("#termsModalContent");
 const openTermsModal = document.querySelector("#openTermsModal");
 const closeTermsModal = document.querySelector("#closeTermsModal");
+const termsScrollHint = document.querySelector("#termsScrollHint");
 const completionModal = document.querySelector("#completionModal");
 const closeCompletionModal = document.querySelector("#closeCompletionModal");
 const completionOrderId = document.querySelector("#completionOrderId");
@@ -24,6 +27,12 @@ const completionDate = document.querySelector("#completionDate");
 const completionSlot = document.querySelector("#completionSlot");
 const completionItems = document.querySelector("#completionItems");
 const completionStatus = document.querySelector("#completionStatus");
+const scheduleError = document.querySelector("#scheduleError");
+const orderItemsError = document.querySelector("#orderItemsError");
+const termsAgreementError = document.querySelector("#termsAgreementError");
+const orderTextControls = orderForm
+  ? Array.from(orderForm.querySelectorAll("input[name='familyName'], input[name='givenName'], input[name='phone'], input[name='email'], textarea[name='note']"))
+  : [];
 
 const orderCalendar = [
   {
@@ -82,11 +91,120 @@ let selectedDateId = selectedDateInput?.value || "";
 let selectedSlotId = selectedSlotInput?.value || "";
 let termsModalReturnFocus = null;
 let completionModalReturnFocus = null;
+let hasCompletedTermsReading = false;
 
 const setFormMessage = (message) => {
   if (formMessage) {
     formMessage.textContent = message;
   }
+};
+
+const setErrorText = (element, message) => {
+  if (element) {
+    element.textContent = message;
+  }
+};
+
+const updateCheckoutButtonState = () => {
+  if (checkoutButton) {
+    checkoutButton.disabled = !(termsAgreement && termsAgreement.checked);
+  }
+};
+
+const getOrderControlMessage = (control) => {
+  const validity = control.validity;
+
+  if (control.name === "familyName" && validity.valueMissing) {
+    return "請輸入姓氏。";
+  }
+
+  if (control.name === "givenName" && validity.valueMissing) {
+    return "請輸入名字。";
+  }
+
+  if (control.name === "phone") {
+    if (validity.valueMissing) {
+      return "請輸入聯絡電話。";
+    }
+
+    if (validity.patternMismatch) {
+      return "請輸入 09 開頭的 10 碼手機號碼。";
+    }
+  }
+
+  if (control.name === "email") {
+    if (validity.valueMissing) {
+      return "請輸入電子信箱。";
+    }
+
+    if (validity.typeMismatch) {
+      return "請輸入有效的 Email 格式。";
+    }
+  }
+
+  if (control.name === "note" && validity.tooLong) {
+    return "備註最多 200 個字。";
+  }
+
+  return "";
+};
+
+const setControlError = (control, message) => {
+  const error = orderForm?.querySelector(`[data-error-for="${control.name}"]`);
+  setErrorText(error, message);
+  control.setAttribute("aria-invalid", String(Boolean(message)));
+};
+
+const validateOrderControl = (control) => {
+  const message = control.checkValidity() ? "" : getOrderControlMessage(control);
+  setControlError(control, message);
+  return message;
+};
+
+const validateSchedule = () => {
+  let message = "";
+
+  if (!selectedPickupId) {
+    message = "請先選擇取貨據點。";
+  } else if (!selectedDateId) {
+    message = "請先選擇取餐日期。";
+  } else if (!selectedSlotId) {
+    message = "請選擇尚可預購的取餐時段。";
+  }
+
+  setErrorText(scheduleError, message);
+  return message;
+};
+
+const validateOrderItems = () => {
+  const hasSelectedItems = getOrderItemState().some((item) => item.quantity > 0);
+  const message = hasSelectedItems ? "" : "請至少選擇 1 份餐點。";
+  setErrorText(orderItemsError, message);
+  return message;
+};
+
+const validateTermsAgreement = () => {
+  let message = "";
+
+  if (!hasCompletedTermsReading) {
+    message = "請先開啟並閱讀預訂須知，捲到底後才能勾選同意。";
+  } else if (termsAgreement && !termsAgreement.checked) {
+    message = "請先勾選同意預訂須知與個資聲明。";
+  }
+
+  setErrorText(termsAgreementError, message);
+  termsAgreement?.setAttribute("aria-invalid", String(Boolean(message)));
+  termsAgreement?.closest(".terms-consent")?.classList.toggle("is-invalid", Boolean(message));
+  return message;
+};
+
+const clearValidationState = () => {
+  setErrorText(scheduleError, "");
+  setErrorText(orderItemsError, "");
+  setErrorText(termsAgreementError, "");
+  orderTextControls.forEach((control) => setControlError(control, ""));
+  termsAgreement?.setAttribute("aria-invalid", "false");
+  termsAgreement?.closest(".terms-consent")?.classList.remove("is-invalid");
 };
 
 const formatMoney = (amount) => `${amount.toLocaleString("zh-TW")} 元`;
@@ -260,6 +378,9 @@ const selectPickupCard = (pickupId) => {
     card.setAttribute("aria-pressed", String(isSelected));
   });
 
+  if (scheduleError?.textContent) {
+    validateSchedule();
+  }
   updateOrderSummary();
 };
 
@@ -315,6 +436,9 @@ const renderDates = () => {
         card.classList.toggle("is-selected", isSelected);
         card.setAttribute("aria-pressed", String(isSelected));
       });
+      if (scheduleError?.textContent) {
+        validateSchedule();
+      }
       renderSlots();
     });
 
@@ -374,6 +498,9 @@ const renderSlots = () => {
         card.classList.toggle("is-selected", isSelected);
         card.setAttribute("aria-pressed", String(isSelected));
       });
+      if (scheduleError?.textContent) {
+        validateSchedule();
+      }
       updateOrderSummary();
     });
 
@@ -397,6 +524,15 @@ function resetOrderForm() {
 
   setFormMessage("");
   termsAgreement?.setCustomValidity("");
+  clearValidationState();
+  hasCompletedTermsReading = false;
+
+  if (termsAgreement) {
+    termsAgreement.disabled = true;
+    termsAgreement.checked = false;
+  }
+
+  updateCheckoutButtonState();
 
   selectedPickupId = selectedPickupInput?.defaultValue || "";
   selectedDateId = selectedDateInput?.defaultValue || "";
@@ -419,18 +555,20 @@ function resetOrderForm() {
 }
 
 const openTermsDialog = () => {
-  if (!termsModal || !closeTermsModal) {
+  if (!termsModal || !closeTermsModal || !termsModalContent) {
     return;
   }
 
   termsModalReturnFocus = document.activeElement;
   termsModal.hidden = false;
   document.body.classList.add("terms-modal-open");
-  closeTermsModal.focus();
+  termsModalContent.scrollTop = 0;
+  updateTermsCloseState();
+  termsModalContent.focus();
 };
 
 const closeTermsDialog = () => {
-  if (!termsModal) {
+  if (!termsModal || closeTermsModal?.disabled) {
     return;
   }
 
@@ -441,6 +579,43 @@ const closeTermsDialog = () => {
     termsModalReturnFocus.focus();
   }
 };
+
+const isTermsScrolledToEnd = () => {
+  if (!termsModalContent) {
+    return false;
+  }
+
+  const remainingScroll =
+    termsModalContent.scrollHeight - termsModalContent.scrollTop - termsModalContent.clientHeight;
+  return remainingScroll <= 2;
+};
+
+function completeTermsReading() {
+  hasCompletedTermsReading = true;
+
+  if (termsAgreement) {
+    termsAgreement.disabled = false;
+  }
+
+  if (termsAgreementError?.textContent) {
+    validateTermsAgreement();
+  }
+}
+
+function updateTermsCloseState() {
+  if (!closeTermsModal || !termsScrollHint) {
+    return;
+  }
+
+  if (isTermsScrolledToEnd()) {
+    completeTermsReading();
+  }
+
+  closeTermsModal.disabled = !hasCompletedTermsReading;
+  termsScrollHint.textContent = hasCompletedTermsReading
+    ? "已閱讀完畢，可以關閉。"
+    : "請將預訂須知捲到底後即可關閉。";
+}
 
 const openCompletionDialog = () => {
   if (!completionModal || !closeCompletionModal) {
@@ -471,6 +646,7 @@ const closeCompletionDialog = () => {
 openTermsModal?.addEventListener("click", openTermsDialog);
 closeTermsModal?.addEventListener("click", closeTermsDialog);
 closeCompletionModal?.addEventListener("click", closeCompletionDialog);
+termsModalContent?.addEventListener("scroll", updateTermsCloseState);
 
 termsModal?.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
@@ -481,7 +657,11 @@ termsModal?.addEventListener("keydown", (event) => {
 
   if (event.key === "Tab" && closeTermsModal) {
     event.preventDefault();
-    closeTermsModal.focus();
+    if (closeTermsModal.disabled) {
+      termsModalContent?.focus();
+    } else {
+      closeTermsModal.focus();
+    }
   }
 });
 
@@ -515,10 +695,24 @@ completionModal?.addEventListener("keydown", (event) => {
 
 termsAgreement?.addEventListener("change", () => {
   termsAgreement.setCustomValidity("");
+  validateTermsAgreement();
+  updateCheckoutButtonState();
 });
 
 termsAgreement?.addEventListener("invalid", () => {
-  setFormMessage("請先勾選同意預訂須知與個資聲明。");
+  validateTermsAgreement();
+});
+
+orderTextControls.forEach((control) => {
+  control.addEventListener("blur", () => {
+    validateOrderControl(control);
+  });
+
+  control.addEventListener("input", () => {
+    if (control.getAttribute("aria-invalid") === "true") {
+      validateOrderControl(control);
+    }
+  });
 });
 
 orderItems.forEach((item) => {
@@ -530,38 +724,39 @@ orderItems.forEach((item) => {
 
       item.dataset.quantity = String(nextQuantity);
       updateOrderSummary();
+      if (orderItemsError?.textContent) {
+        validateOrderItems();
+      }
     });
   });
 });
 
 orderForm?.addEventListener("submit", (event) => {
   event.preventDefault();
+  setFormMessage("");
 
-  if (!selectedPickupId) {
-    setFormMessage("請先選擇取貨據點。");
-    return;
-  }
+  const scheduleMessage = validateSchedule();
+  const itemsMessage = validateOrderItems();
+  const controlMessages = orderTextControls.map((control) => ({
+    control,
+    message: validateOrderControl(control),
+  }));
+  const termsMessage = validateTermsAgreement();
+  const firstInvalidControl = controlMessages.find((result) => result.message)?.control;
 
-  if (!selectedDateId) {
-    setFormMessage("請先選擇想把這隻狠雞帶回家的日期。");
-    return;
-  }
+  if (scheduleMessage || itemsMessage || firstInvalidControl || termsMessage) {
+    if (firstInvalidControl) {
+      firstInvalidControl.focus();
+    } else if (itemsMessage) {
+      orderItems[0]?.querySelector("[data-quantity-action='increase']")?.focus();
+    } else if (termsMessage) {
+      if (hasCompletedTermsReading) {
+        termsAgreement?.focus();
+      } else {
+        openTermsModal?.focus();
+      }
+    }
 
-  if (!selectedSlotId) {
-    setFormMessage("請再選一個尚可預購的取餐時段。");
-    return;
-  }
-
-  if (termsAgreement && !termsAgreement.checked) {
-    termsAgreement.setCustomValidity("請先勾選同意火候研究所預訂須知與個資聲明。");
-    orderForm.reportValidity();
-    setFormMessage("請先勾選同意預訂須知與個資聲明。");
-    termsAgreement.focus();
-    return;
-  }
-
-  if (!orderForm.reportValidity()) {
-    setFormMessage("請確認姓、名、聯絡電話與電子信箱皆已填寫。");
     return;
   }
 
@@ -575,3 +770,5 @@ if (dateGrid && slotGrid) {
   renderDates();
   renderSlots();
 }
+
+updateCheckoutButtonState();

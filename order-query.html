@@ -16,8 +16,10 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/tailwind.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/themes/dark.css" />
     <link rel="stylesheet" href="css/styles.css?v=20260629-back-to-top" />
-    <link rel="stylesheet" href="css/order-query.css" />
+    <link rel="stylesheet" href="css/order-query.css?v=20260629-status-badge" />
   </head>
   <body data-page="query">
     <header class="site-header">
@@ -72,7 +74,7 @@
             <p>手機號碼與預定日期會對上你的取餐安排，讓這份炭香晚餐穩穩入列。</p>
           </div>
 
-          <form class="lookup-form" id="orderLookupForm">
+          <form class="lookup-form" id="orderLookupForm" novalidate>
             <label>
               <span>手機號碼</span>
               <input
@@ -84,12 +86,25 @@
                 required
                 pattern="09[0-9]{8}"
                 placeholder="0912345678"
-                aria-describedby="lookupMessage"
+                aria-describedby="lookupPhoneError lookupMessage"
               />
+              <p class="field-error" id="lookupPhoneError" data-error-for="phone" aria-live="polite"></p>
             </label>
             <label>
               <span>預定日期</span>
-              <input id="lookupDate" type="date" name="reservedDate" required aria-describedby="lookupMessage" />
+              <input
+                id="lookupDate"
+                class="date-picker-input h-12 rounded-lg border border-[var(--line)] bg-white/[0.045] px-3.5 text-[var(--lab-white)] outline-none transition focus:border-[var(--flame-orange)] focus:ring-4 focus:ring-[rgba(255,63,0,0.18)]"
+                type="text"
+                name="reservedDate"
+                inputmode="none"
+                autocomplete="off"
+                placeholder="選擇預定日期"
+                readonly
+                required
+                aria-describedby="lookupDateError lookupMessage"
+              />
+              <p class="field-error" id="lookupDateError" data-error-for="reservedDate" aria-live="polite"></p>
             </label>
             <div class="lookup-actions">
               <button class="button button--primary" type="submit">查詢訂單</button>
@@ -150,6 +165,8 @@
     </footer>
 
     <script src="js/main.js?v=20260629-back-to-top"></script>
-    <script src="js/order-query.js?v=20260627-page-assets"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/zh-tw.js"></script>
+    <script src="js/order-query.js?v=20260629-status-badge"></script>
   </body>
 </html>
