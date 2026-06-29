@@ -14,7 +14,7 @@
   position: relative;
   display: grid;
   grid-template-rows: minmax(260px, auto) 1fr;
-  overflow: hidden;
+  overflow: visible;
   border: 1px solid var(--line);
   border-radius: 12px;
   background: radial-gradient(800px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(255, 170, 0, 0.03), transparent 45%), rgba(255, 255, 255, 0.035);
@@ -23,6 +23,7 @@
 }
 
 .menu-package-card:hover {
+  z-index: 5;
   border-color: rgba(255, 63, 0, 0.45);
   background: radial-gradient(800px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(255, 63, 0, 0.12), transparent 40%), rgba(255, 255, 255, 0.055);
   transform: translateY(-5px);
@@ -34,22 +35,35 @@
 }
 
 .menu-package-card .product-image-block {
+  z-index: 1;
   min-height: 260px;
-  padding: 18px;
+  padding: 0;
   background: rgba(0, 0, 0, 0.12);
+  overflow: visible;
 }
 
 .menu-package-card img {
+  position: relative;
+  z-index: 1;
   width: 100%;
-  max-height: 250px;
-  object-fit: contain;
+  height: auto;
+  max-width: none;
+  max-height: none;
+  border-radius: 12px 12px 0 0;
+  object-fit: cover;
   filter: drop-shadow(0 10px 26px rgba(255, 63, 0, 0.14));
-  transition: transform 450ms cubic-bezier(0.16, 1, 0.3, 1), filter 450ms ease;
+  transform-origin: center center;
+  transition: transform 520ms cubic-bezier(0.16, 1, 0.3, 1), filter 520ms ease;
 }
 
 .menu-package-card:hover img {
-  transform: scale(1.05) rotate(1.5deg);
-  filter: drop-shadow(0 12px 30px rgba(255, 63, 0, 0.22));
+  transform: scale(1.12) rotate(1.4deg) translateY(-8px);
+  filter: drop-shadow(0 18px 34px rgba(255, 63, 0, 0.28));
+}
+
+.menu-package-card .product-image-note {
+  z-index: 10;
+  pointer-events: none;
 }
 
 .menu-package-card__body {
@@ -168,6 +182,51 @@
 .recipe-step .hint {
   color: var(--ember-gold);
   font-weight: 800;
+}
+
+@media (min-width: 1101px) {
+  .recipe-grid {
+    align-items: stretch;
+  }
+
+  .recipe-step {
+    align-items: center;
+    min-height: 560px;
+  }
+
+  .recipe-step > h3 {
+    display: flex;
+    min-height: 64px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .recipe-step > p:not(.hint) {
+    display: flex;
+    min-height: 132px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0 !important;
+  }
+
+  .recipe-step > img {
+    flex: 0 0 220px;
+    width: min(100%, 220px);
+    height: 220px;
+    max-width: 220px;
+    max-height: 220px;
+    margin-top: 0 !important;
+    margin-bottom: 24px !important;
+    object-fit: contain;
+  }
+
+  .recipe-step > .hint {
+    display: flex;
+    min-height: 72px;
+    align-items: flex-start;
+    justify-content: center;
+    margin-top: 0 !important;
+  }
 }
 
 @media (max-width: 1100px) {

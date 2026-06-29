@@ -16,7 +16,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/tailwind.css" />
-    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/styles.css?v=20260629-back-to-top" />
     <link rel="stylesheet" href="css/menu.css" />
   </head>
   <body data-page="menu">
@@ -55,9 +55,9 @@
 
     <main>
       <section class="page-hero page-shell">
-        <div>
-          <h1>研究菜單</h1>
-          <p>主烤全雞、當季時蔬與精油雞汁皆孕育自同一爐火。所有品項皆為套餐形式，完整內容、份量與價格都在這裡一次看清楚。</p>
+        <div class="space-y-4">
+          <h1 class="text-transparent bg-clip-text bg-gradient-to-r from-[var(--ember-gold)] to-[var(--flame-orange)] pb-1">研究菜單</h1>
+          <p class="text-lg leading-relaxed text-[var(--muted)]">主烤全雞、當季時蔬與精油雞汁皆孕育自同一爐火。所有品項皆為套餐形式，完整內容、份量與價格都在這裡一次看清楚。</p>
         </div>
         <picture class="page-hero__media">
           <source media="(max-width: 520px)" srcset="assets/images/product/menu-hero-mobile.png" />
@@ -65,56 +65,83 @@
         </picture>
       </section>
 
-      <section class="menu-combo page-shell" aria-label="菜單品項">
+      <section class="menu-combo page-shell" aria-labelledby="menu-combo-title">
+        <div class="section-heading">
+          <div>
+            <h2 id="menu-combo-title">套餐品項</h2>
+            <p>兩種桶烤全雞套餐皆含火候雞汁時蔬、一次性手套與獨門秘製沾粉，依聚餐人數選擇剛好的份量。</p>
+          </div>
+        </div>
+
         <div class="menu-card-grid">
           <article class="menu-package-card scroll-reveal">
             <figure class="product-image-block">
-              <img src="assets/images/product/product-roast-chicken.png" alt="招牌桶烤全雞套餐" />
+              <img src="assets/images/product/menu-signature-barrel-roast-chicken-board.png" alt="招牌桶烤全雞套餐" />
               <figcaption class="product-image-note">圖片僅供參考</figcaption>
             </figure>
             <div class="menu-package-card__body">
-              <div class="menu-package-card__title-row">
-                <h2>招牌桶烤全雞套餐</h2>
-                <strong class="menu-package-card__price">NT$750</strong>
+              <div class="menu-package-card__title-row !flex !flex-col sm:!flex-row sm:!items-start sm:!justify-between !gap-2 mb-2">
+                <h2 class="!text-[clamp(1.4rem,2.2vw,1.82rem)]">🔥招牌桶烤全雞套餐</h2>
+                <strong class="text-3xl sm:text-4xl font-black text-[var(--ember-gold)] leading-none mt-1 sm:mt-0">NT$750</strong>
               </div>
-              <p class="spec-label">適合 2-4 人分享</p>
-              <p>特選仿土雞以科學醃料入味，鎖入雙層鋼桶炙烤。金黃焦脆的外皮下裹著洶湧雞汁，搭配依季節登場的火候雞汁時蔬。</p>
-              <ul class="menu-package-card__contents">
-                <li>火候雞汁時蔬</li>
-                <li>一次性手套</li>
-                <li>獨門秘製沾粉</li>
+
+              <p class="spec-label !mt-2 !mb-4 !px-3 !py-1 !text-sm !rounded-full">適合 2-4 人分享</p>
+              <p class="!mb-6">特選仿土雞以科學醃料入味，鎖入雙層鋼桶炙烤。金黃焦脆的外皮下裹著洶湧雞汁，搭配依季節登場的火候雞汁時蔬。</p>
+
+              <ul class="menu-package-card__contents space-y-2">
+                <li class="flex items-center gap-2">
+                  <span class="text-[var(--flame-orange)] text-lg leading-none">▪</span> 火候雞汁時蔬 x 1
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="text-[var(--flame-orange)] text-lg leading-none">▪</span> 一次性手套 x 2
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="text-[var(--flame-orange)] text-lg leading-none">▪</span> 獨門秘製沾粉 x 2
+                </li>
               </ul>
-              <div class="menu-package-card__badges" aria-label="套餐標籤">
-                <span>套餐限定</span>
+              <div class="menu-package-card__badges mt-6" aria-label="套餐特色標籤">
+                <span class="!bg-[var(--flame-orange)] !text-white !border-transparent">每週限量開爐</span>
+                <span>招牌必點</span>
+                <span>肉汁爆發</span>
               </div>
             </div>
           </article>
 
           <article class="menu-package-card menu-package-card--featured scroll-reveal">
             <figure class="product-image-block">
-              <img src="assets/images/product/product-roast-chicken.png" alt="火候霸王桶烤全雞套餐" />
+              <img src="assets/images/product/menu-overlord-barrel-roast-chicken-rock-slab.png" alt="火候霸王桶烤全雞套餐" />
               <figcaption class="product-image-note">圖片僅供參考</figcaption>
             </figure>
             <div class="menu-package-card__body">
-              <div class="menu-package-card__title-row">
-                <h2>火候霸王桶烤全雞套餐</h2>
-                <strong class="menu-package-card__price">NT$1,200</strong>
+              <div class="menu-package-card__title-row !flex !flex-col sm:!flex-row sm:!items-start sm:!justify-between !gap-2 mb-2">
+                <h2 class="!text-[clamp(1.4rem,2.2vw,1.82rem)]">火候霸王桶烤全雞套餐</h2>
+                <strong class="text-3xl sm:text-4xl font-black text-[var(--ember-gold)] leading-none mt-1 sm:mt-0">NT$1,200</strong>
               </div>
-              <p class="spec-label">適合 5-8 人分享</p>
-              <p>大份量聚餐首選，整隻 5 台斤仿土雞火力全開，搭配豪華版火候雞汁時蔬，讓更多人都吃得到吸飽雞汁的精華配菜。</p>
-              <ul class="menu-package-card__contents">
-                <li>豪華版火候雞汁時蔬</li>
-                <li>一次性手套</li>
-                <li>獨門秘製沾粉</li>
+
+              <p class="spec-label !mt-2 !mb-4 !px-3 !py-1 !text-sm !rounded-full">適合 5-8 人分享</p>
+              <p class="!mb-6">大份量聚餐首選，整隻 5 台斤仿土雞火力全開，搭配豪華版火候雞汁時蔬，讓更多人都吃得到吸飽雞汁的精華配菜。</p>
+
+              <ul class="menu-package-card__contents space-y-2">
+                <li class="flex items-center gap-2">
+                  <span class="text-[var(--flame-orange)] text-lg leading-none">▪</span> 豪華版火候雞汁時蔬 x 1
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="text-[var(--flame-orange)] text-lg leading-none">▪</span> 一次性手套 x 4
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="text-[var(--flame-orange)] text-lg leading-none">▪</span> 獨門秘製沾粉 x 4
+                </li>
               </ul>
-              <div class="menu-package-card__badges" aria-label="套餐標籤">
-                <span>豪華版時蔬</span>
-                <span>套餐限定</span>
+              <div class="menu-package-card__badges mt-6" aria-label="套餐特色標籤">
+                <span class="!bg-[var(--flame-orange)] !text-white !border-transparent">巨無霸肉量</span>
+                <span>🔥豪華升級版</span>
+                <span>派對聚餐首選</span>
               </div>
             </div>
           </article>
         </div>
-        <div class="menu-combo__actions">
+
+        <div class="menu-combo__actions mt-6">
           <a class="button button--primary" href="order.html">立即搶訂卡位</a>
         </div>
       </section>
@@ -128,25 +155,27 @@
         </div>
 
         <div class="recipe-grid">
-          <article class="recipe-step scroll-reveal">
-            <span>01</span>
-            <h3>雙料清爽拌食</h3>
-            <p>一口金黃手撕雞肉，配上一口吸飽精油雞汁的當季現烤時蔬，油脂的香與時蔬的甜在口腔中達到極致平衡。</p>
-            <img src="assets/images/product/product-veggie-1.png" alt="火候雞汁時蔬" />
-            <p class="hint">時蔬會依季節與當日採買調整。</p>
+          <article class="recipe-step scroll-reveal flex flex-col items-center text-center">
+            <span class="!flex !w-12 !h-12 !items-center !justify-center !rounded-full !mb-6 !text-xl !bg-[var(--flame-orange)] !text-white !border-none !shadow-[0_0_15px_rgba(255,63,0,0.5)] !font-black">01</span>
+            <h3 class="!text-xl sm:!text-2xl !mb-3">雙料清爽拌食</h3>
+            <p class="!mb-8">一口金黃手撕雞肉，配上一口吸飽精油雞汁的當季現烤時蔬，油脂的香與時蔬的甜在口腔中達到極致平衡。</p>
+            <img src="assets/images/product/product-veggie-1.png" alt="火候雞汁時蔬" class="w-full max-w-[200px] mx-auto object-contain mb-6 mt-auto" />
+            <p class="hint mt-auto text-sm">時蔬會依季節與當日採買調整。</p>
           </article>
-          <article class="recipe-step scroll-reveal">
-            <span>02</span>
-            <h3>黃金雞汁拌麵線</h3>
-            <p>將當季烤時蔬與底部濃醇香甜的雞汁精華，直接淋入台灣手工麵線拌勻，香氣與順滑度瞬間攀上巔峰。</p>
-            <img src="assets/images/product/product-veggie-2.png" alt="火候雞汁時蔬" />
-            <p class="hint">推薦依個人喜好自由加入拉麵、冬粉、溫泉蛋或新鮮青菜，解鎖個人風味實驗。</p>
+
+          <article class="recipe-step scroll-reveal flex flex-col items-center text-center">
+            <span class="!flex !w-12 !h-12 !items-center !justify-center !rounded-full !mb-6 !text-xl !bg-[var(--flame-orange)] !text-white !border-none !shadow-[0_0_15px_rgba(255,63,0,0.5)] !font-black">02</span>
+            <h3 class="!text-xl sm:!text-2xl !mb-3">黃金雞汁拌麵線</h3>
+            <p class="!mb-8">將當季烤時蔬與底部濃醇香甜的雞汁精華，直接淋入台灣手工麵線拌勻，香氣與順滑度瞬間攀上巔峰。</p>
+            <img src="assets/images/product/product-veggie-2.png" alt="火候雞汁時蔬" class="w-full max-w-[200px] mx-auto object-contain mb-6 mt-auto" />
+            <p class="hint mt-auto text-sm">推薦依個人喜好自由加入拉麵、冬粉、溫泉蛋或新鮮青菜，解鎖個人風味實驗。</p>
           </article>
-          <article class="recipe-step scroll-reveal">
-            <span>03</span>
-            <h3>極品雞湯封尾</h3>
-            <p>吃完當季時蔬後，將餘下的精華湯汁直接沖入熱開水滾沸，瞬間化為一碗熱騰騰、香氣撲鼻的完美雞湯。</p>
-            <img src="assets/images/product/product-veggie-3.png" alt="火候雞汁時蔬" />
+
+          <article class="recipe-step scroll-reveal flex flex-col items-center text-center">
+            <span class="!flex !w-12 !h-12 !items-center !justify-center !rounded-full !mb-6 !text-xl !bg-[var(--flame-orange)] !text-white !border-none !shadow-[0_0_15px_rgba(255,63,0,0.5)] !font-black">03</span>
+            <h3 class="!text-xl sm:!text-2xl !mb-3">極品雞湯封尾</h3>
+            <p class="!mb-8">吃完當季時蔬後，將餘下的精華湯汁直接沖入熱開水滾沸，瞬間化為一碗熱騰騰、香氣撲鼻的完美雞湯。</p>
+            <img src="assets/images/product/product-veggie-3.png" alt="火候雞汁時蔬" class="w-full max-w-[200px] mx-auto object-contain mb-6 mt-auto" />
           </article>
         </div>
       </section>
@@ -194,6 +223,6 @@
       </div>
     </footer>
 
-    <script src="js/main.js?v=20260627-mobile-nav"></script>
+    <script src="js/main.js?v=20260629-back-to-top"></script>
   </body>
 </html>

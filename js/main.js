@@ -111,7 +111,7 @@ const initializeScrollAnimations = () => {
 
 const initializeSpotlightEffects = () => {
   const cards = document.querySelectorAll(
-    ".feature-card, .product-card, .menu-item, .recipe-step, .story-block, .order-step, .contact-panel, .lookup-panel, .lookup-result"
+    ".feature-card, .product-card, .menu-package-card, .menu-item, .recipe-step, .story-block, .order-step, .contact-panel, .lookup-panel, .lookup-result"
   );
 
   cards.forEach((card) => {
@@ -126,7 +126,51 @@ const initializeSpotlightEffects = () => {
   });
 };
 
+const initializeBackToTopButton = () => {
+  if (document.querySelector(".back-to-top")) {
+    return;
+  }
+
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "back-to-top";
+  button.setAttribute("aria-label", "回到頁面頂端");
+  button.setAttribute("title", "回到頁面頂端");
+  button.setAttribute("aria-hidden", "true");
+  button.tabIndex = -1;
+  button.innerHTML = `
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M12 19V5m0 0-6 6m6-6 6 6" />
+    </svg>
+  `;
+
+  document.body.append(button);
+
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  const updateVisibility = () => {
+    const pageCanScroll = document.documentElement.scrollHeight > window.innerHeight + 120;
+    const shouldShow = pageCanScroll && window.scrollY > 320;
+
+    button.classList.toggle("is-visible", shouldShow);
+    button.setAttribute("aria-hidden", shouldShow ? "false" : "true");
+    button.tabIndex = shouldShow ? 0 : -1;
+  };
+
+  button.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: prefersReducedMotion.matches ? "auto" : "smooth",
+    });
+  });
+
+  window.addEventListener("scroll", updateVisibility, { passive: true });
+  window.addEventListener("resize", updateVisibility);
+  updateVisibility();
+};
+
 markActiveNavigation();
 initializeMobileNavigation();
 initializeScrollAnimations();
 initializeSpotlightEffects();
+initializeBackToTopButton();
